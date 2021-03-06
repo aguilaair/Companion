@@ -7,36 +7,11 @@ on:
 name: Create Release
 
 jobs:
-  release:
-    name: Create Release
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/app
-    container:
-      image: google/dart:latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Install dependencies
-        run: pub get
-      - name: Install Cider
-        run: pub global activate cider
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: true
-          prerelease: false
   build:
     name: "Build ${{ matrix.sdk-version }} / ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     defaults:
       run:
         working-directory: packages/app
@@ -63,6 +38,27 @@ jobs:
 
       - name: Analyze Flutter
         run: flutter analyze
-
-      - name: Build Release App
+        
+      - name: Enable desktop
+        run: flutter config --enable-${{ matrix.TARGET }}-desktop
+      
+      - name: Flutter build app
         run: flutter build ${{ matrix.TARGET }}
+        
+      - name: Compress artifacts
+        uses: TheDoctor0/zip-release@0.4.1
+        with:
+          path: ./build/${{ matrix.TARGET }}
+          filename: ${{ matrix.TARGET }}.zip
+          
+      - name: Upload files to a GitHub release
+        # You may pin to the exact commit or the version.
+        # uses: svenstaro/upload-release-action@483c1e56f95e88835747b1c7c60581215016cbf2
+        uses: svenstaro/upload-release-action@2.2.1
+        with:
+          # GitHub token.
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          # Local file to upload.
+          file: ${{ matrix.TARGET }}.zip
+          # Tag to use as a release.
+          tag: ${{ github.ref }}

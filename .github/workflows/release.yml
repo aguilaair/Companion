@@ -1,8 +1,7 @@
 on:
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'App v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  release:
+    types: # This configuration does not affect the page_build event above
+      - created
 
 name: Create Release
 

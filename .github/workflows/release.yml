@@ -17,8 +17,6 @@ jobs:
       
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v1.4.0
-        with:
-          channel: stable
           
       - name: Enable desktop
         run: flutter config --enable-linux-desktop

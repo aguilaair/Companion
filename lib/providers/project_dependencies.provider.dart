@@ -1,4 +1,4 @@
-import 'package:fvm_app/providers/projects_provider.dart';
+//import 'package:fvm_app/providers/projects_provider.dart';
 import 'package:fvm_app/utils/dependencies.dart';
 import 'package:fvm_app/utils/http_cache.dart';
 import 'package:github/github.dart';
@@ -19,6 +19,7 @@ final getGithubRepositoryProvider =
 // ignore: top_level_function_literal_block
 final projectDependenciesProvider = FutureProvider((ref) async {
   //final projects = ref.watch(projectsProvider.state);
+  //TODO: Reenable this
   final packages = <String, int>{};
 
   //for (var project in projects.list) {

@@ -11,24 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    defaults:
-      run:
-        working-directory: packages/app
 
     steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v2.3.4
+      
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v1.4.0
         with:
           channel: stable
-      
-      - name: Analyze Flutter
-        run: flutter analyze
           
       - name: Enable desktop
         run: flutter config --enable-linux-desktop
+        
+      - name: Analyze Flutter
+        run: flutter pub get
       
       - name: Flutter build app
         run: flutter build ${{ matrix.TARGET }}

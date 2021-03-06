@@ -24,3 +24,26 @@ ThemeData darkTheme() {
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
+
+ThemeData lightTheme() {
+  return ThemeData(
+    textTheme: GoogleFonts.ibmPlexSansTextTheme(ThemeData.light().textTheme),
+    brightness: Brightness.light,
+    primarySwatch: Colors.cyan,
+    accentColor: Colors.cyan,
+    // cardColor: const Color(0xFF222222),
+    // scaffoldBackgroundColor: const Color(0xFF0E0E0E),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      color: Color(0xFFbdbdbd),
+    ),
+    cardTheme: const CardTheme(shape: RoundedRectangleBorder()),
+    dialogTheme: DialogTheme(
+      elevation: 10,
+      shape: Border.all(color: Colors.white24),
+      backgroundColor: Colors.black87,
+    ),
+  ).copyWith(
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+  );
+}

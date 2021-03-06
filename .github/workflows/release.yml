@@ -25,7 +25,7 @@ jobs:
         run: flutter pub get
       
       - name: Flutter build app
-        run: flutter build ${{ matrix.TARGET }}
+        run: flutter build linux
         
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1

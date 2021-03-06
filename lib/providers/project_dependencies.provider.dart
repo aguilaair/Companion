@@ -22,21 +22,21 @@ final projectDependenciesProvider = FutureProvider((ref) async {
   final projects = ref.watch(projectsProvider.state);
   final packages = <String, int>{};
 
-  for (var project in projects.list) {
-    final pubspec = project.pubspec;
-    final deps = pubspec.dependencies.toList();
-    final devDeps = pubspec.devDependencies.toList();
-    final allDeps = [...deps, ...devDeps];
+  //for (var project in projects.list) {
+    //final pubspec = project.pubspec;
+    //final deps = pubspec.dependencies.toList();
+    //final devDeps = pubspec.devDependencies.toList();
+    //final allDeps = [...deps, ...devDeps];
 
     // Loop through all dependencies
     // ignore: avoid_function_literals_in_foreach_calls
-    allDeps.forEach((dep) {
+    //allDeps.forEach((dep) {
       // ignore: invalid_use_of_protected_member
-      if (dep.hosted != null && !isGooglePubPackage(dep.package())) {
-        packages.update(dep.package(), (val) => ++val, ifAbsent: () => 1);
-      }
-    });
-  }
+      //if (dep.hosted != null && !isGooglePubPackage(dep.package())) {
+        //packages.update(dep.package(), (val) => ++val, ifAbsent: () => 1);
+      //}
+//});
+  //}
   final pkgs = await fetchAllDependencies(packages);
   pkgs..sort((a, b) => a.compareTo(b));
   // Reverse order

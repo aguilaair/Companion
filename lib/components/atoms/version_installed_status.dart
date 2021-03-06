@@ -61,7 +61,7 @@ class VersionInstalledStatus extends StatelessWidget {
         const SizedBox(width: 10),
         const Icon(MdiIcons.arrowRight, size: 15),
         const SizedBox(width: 10),
-        OutlineButton.icon(
+        OutlinedButton.icon(
           icon: const Icon(
             MdiIcons.triangle,
             size: 15,

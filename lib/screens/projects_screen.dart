@@ -48,7 +48,7 @@ class ProjectsScreen extends HookWidget {
     return FvmScreen(
       title: 'Flutter Projects',
       actions: [
-        FlatButton.icon(
+        TextButton.icon(
           label: const TypographyCaption('Refresh'),
           icon: const Icon(MdiIcons.refresh, size: 20),
           onPressed: () async {

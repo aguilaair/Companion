@@ -14,7 +14,7 @@ class ChannelShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlineButton(
+    return OutlinedButton(
       onPressed: () {
         context.read(selectedInfoProvider).selectVersion(channel);
       },

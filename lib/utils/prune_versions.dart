@@ -35,15 +35,23 @@ Future<void> pruneVersionsDialog(BuildContext context) async {
           title: const Text('Prune unused versions'),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
-            OutlineButton(
+            OutlinedButton(
               child: const Text("Cancel"),
-              padding: const EdgeInsets.all(20),
+              style: ButtonStyle(
+                padding: MaterialStateProperty.resolveWith(
+                  (states) => const EdgeInsets.all(20),
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            OutlineButton(
-              padding: const EdgeInsets.all(20),
+            OutlinedButton(
+              style: ButtonStyle(
+                padding: MaterialStateProperty.resolveWith(
+                  (states) => const EdgeInsets.all(20),
+                ),
+              ),
               child: const Text("Confirm"),
               onPressed: () async {
                 for (var version in toDelete) {

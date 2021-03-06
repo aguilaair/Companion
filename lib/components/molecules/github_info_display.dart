@@ -22,24 +22,28 @@ class GithubInfoDisplay extends HookWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FlatButton.icon(
-            icon: Icon(Icons.star, size: 15),
+          // TODO: Should these do something?
+          TextButton.icon(
+            onPressed: (){},
+            icon: const Icon(Icons.star, size: 15),
             label: Text(data.stargazersCount.toString()),
           ),
           const SizedBox(width: 10),
-          FlatButton.icon(
-            icon: Icon(MdiIcons.alertCircleOutline, size: 15),
+          TextButton.icon(
+            onPressed: (){},
+            icon: const Icon(MdiIcons.alertCircleOutline, size: 15),
             label: Text(data.openIssuesCount.toString()),
           ),
           const SizedBox(width: 10),
-          FlatButton.icon(
-            icon: Icon(MdiIcons.sourceFork, size: 15),
+          TextButton.icon(
+            onPressed: (){},
+            icon: const Icon(MdiIcons.sourceFork, size: 15),
             label: Text(data.forksCount.toString()),
           ),
         ],
       );
     }, loading: () {
-      return Expanded(child: LinearProgressIndicator());
+      return const Expanded(child: LinearProgressIndicator());
     }, error: (_, __) {
       return Container();
     });

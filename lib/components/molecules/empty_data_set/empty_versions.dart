@@ -27,8 +27,13 @@ class EmptyVersions extends StatelessWidget {
               style: Theme.of(context).textTheme.caption,
             ),
             const SizedBox(height: 20),
-            RaisedButton.icon(
-              padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+            ElevatedButton.icon(
+              style: ButtonStyle(
+                padding: 
+                MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+                  (states) => const EdgeInsets.fromLTRB(30, 15, 30, 15)
+                  ),
+              ),
               onPressed: () {
                 context
                     .read(navigationProvider)

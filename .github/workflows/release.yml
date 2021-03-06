@@ -116,7 +116,7 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: macos.zip
+          file: windows.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
 

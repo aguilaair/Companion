@@ -1,4 +1,4 @@
-[![Codemagic build status](https://api.codemagic.io/apps/60439fe1478667711d029d4c/60439fe1478667711d029d4b/status_badge.svg)](https://codemagic.io/apps/60439fe1478667711d029d4c/60439fe1478667711d029d4b/latest_build)
+[![Build (Linux, Mac OS, Windows)](https://github.com/aguilaair/sidekick/actions/workflows/main.yml/badge.svg)](https://github.com/aguilaair/sidekick/actions/workflows/main.yml)
 
 
 # sidekick

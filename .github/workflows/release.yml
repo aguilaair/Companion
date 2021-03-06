@@ -84,6 +84,7 @@ jobs:
           # Local file to upload.
           file: macos.zip
           # Tag to use as a release.
+          tag: ${{ github.ref }}
   build-windows:
     name: "Build Windows"
     runs-on: windows-latest

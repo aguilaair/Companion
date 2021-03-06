@@ -33,7 +33,7 @@ jobs:
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          path: ./build/linux
+          path: ./build/linux/release/bundle
           filename: linux.zip
           
       - name: Upload files to a GitHub release

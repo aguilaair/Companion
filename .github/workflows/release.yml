@@ -3,43 +3,32 @@ on:
     types: # This configuration does not affect the page_build event above
       - created
 
-name: Create Release
+name: Lunix Release
 
 jobs:
   build:
-    name: "Build ${{ matrix.sdk-version }} / ${{ matrix.os }}"
-    runs-on: ${{ matrix.os }}
+    name: "Build Linux"
+    runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     defaults:
       run:
         working-directory: packages/app
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
-        sdk-version: [dev] #, dev]
-        include:
-          - os: macOS-latest
-            TARGET: macos
-          - os: ubuntu-latest
-            TARGET: linux
-          - os: windows-latest
-            TARGET: windows
 
     steps:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
-      - name: Setup Flutter ${{ matrix.sdk-version }}
-        uses: DanTup/gh-actions/setup-flutter@master
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v1.4.0
         with:
-          channel: ${{ matrix.sdk-version }}
+          channel: stable
+          
+      - name: Enable desktop
+        run: flutter config --enable-${{ matrix.TARGET }}-desktop
 
       - name: Analyze Flutter
         run: flutter analyze
-        
-      - name: Enable desktop
-        run: flutter config --enable-${{ matrix.TARGET }}-desktop
       
       - name: Flutter build app
         run: flutter build ${{ matrix.TARGET }}
@@ -47,8 +36,8 @@ jobs:
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          path: ./build/${{ matrix.TARGET }}
-          filename: ${{ matrix.TARGET }}.zip
+          path: ./build/linux
+          filename: linux.zip
           
       - name: Upload files to a GitHub release
         # You may pin to the exact commit or the version.
@@ -58,6 +47,6 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: ${{ matrix.TARGET }}.zip
+          file: linux.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}

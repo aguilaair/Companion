@@ -1,12 +1,10 @@
+name: Build (Linux, Mac OS, Windows)
+
 on:
   push:
-    branches:
-      - main
+    branches: [ main, dev ]
   pull_request:
-    branches: 
-      - main
-
-name: Build (Linux, Mac OS, Windows)
+    branches: [ main ]
 
 jobs:
   build-linux:

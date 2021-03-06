@@ -76,5 +76,3 @@ jobs:
       
       - name: Flutter build app
         run: flutter build windows
-          # Tag to use as a release.
-          tag: ${{ github.ref }}

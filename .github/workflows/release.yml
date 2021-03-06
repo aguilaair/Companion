@@ -3,7 +3,7 @@ on:
     types: # This configuration does not affect the page_build event above
       - created
 
-name: Lunix Release
+name: Release Artifacts
 
 jobs:
   build-linux:

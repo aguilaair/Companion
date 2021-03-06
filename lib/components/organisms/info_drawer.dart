@@ -33,6 +33,7 @@ class InfoDrawer extends HookWidget {
 
     if (selected == null) {
       return Drawer(
+        elevation: 10,
         child: Container(
           color: Theme.of(context).cardColor,
           child: const Center(child: TypographyCaption('Nothing selected')),

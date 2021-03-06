@@ -23,12 +23,12 @@ jobs:
         uses: subosito/flutter-action@v1.4.0
         with:
           channel: stable
-          
-      - name: Enable desktop
-        run: flutter config --enable-${{ matrix.TARGET }}-desktop
-
+      
       - name: Analyze Flutter
         run: flutter analyze
+          
+      - name: Enable desktop
+        run: flutter config --enable-linux-desktop
       
       - name: Flutter build app
         run: flutter build ${{ matrix.TARGET }}

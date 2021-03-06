@@ -6,7 +6,7 @@ on:
 name: Lunix Release
 
 jobs:
-  build:
+  build-linux:
     name: "Build Linux"
     runs-on: ubuntu-latest
     env:
@@ -47,3 +47,45 @@ jobs:
           file: linux.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
+  build-macos:
+    name: "Build MacOS"
+    runs-on: macos-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+      
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v1.4.0
+        
+      - name: Set Up XCode
+        uses: devbotsxyz/xcode-select@v1.1.0
+          
+      - name: Enable desktop
+        run: flutter config --enable-macos-desktop
+        
+      - name: Analyze Flutter
+        run: flutter pub get
+      
+      - name: Flutter build app
+        run: flutter build macos
+        
+      - name: Compress artifacts
+        uses: TheDoctor0/zip-release@0.4.1
+        with:
+          path: ./build/macos
+          filename: macos.zip
+          
+      - name: Upload files to a GitHub release
+        # You may pin to the exact commit or the version.
+        # uses: svenstaro/upload-release-action@483c1e56f95e88835747b1c7c60581215016cbf2
+        uses: svenstaro/upload-release-action@2.2.1
+        with:
+          # GitHub token.
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          # Local file to upload.
+          file: macos.zip
+          # Tag to use as a release.
+          tag: ${{ github.ref }}
+

@@ -14,39 +14,58 @@ class ChannelShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () {
-        context.read(selectedInfoProvider).selectVersion(channel);
-      },
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TypographyTitle(channel.name),
-                TypographySubheading(channel.release.version),
-                const SizedBox(height: 5),
-                TypographyCaption(
-                  DateTimeFormat.relative(
-                    channel.release.releaseDate,
-                    appendIfAfter: 'ago',
-                  ),
-                ),
-              ],
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+            left: BorderSide(color: Theme.of(context).dividerColor),
+            bottom: BorderSide(color: Theme.of(context).dividerColor),
+            // TODO: quite a hacky way to achieve this
+            right: channel.name == "dev"
+                ? BorderSide(color: Theme.of(context).dividerColor)
+                : BorderSide.none),
+      ),
+      child: OutlinedButton(
+        onPressed: () {
+          context.read(selectedInfoProvider).selectVersion(channel);
+        },
+        style: ButtonStyle(
+          shape: MaterialStateProperty.resolveWith(
+            (states) => const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
             ),
-            const Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                VersionInstallButton(channel),
-              ],
-            )
-          ],
+          ),
+          side: MaterialStateProperty.resolveWith((states) => BorderSide.none),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TypographyTitle(channel.name),
+                  TypographySubheading(channel.release.version),
+                  const SizedBox(height: 5),
+                  TypographyCaption(
+                    DateTimeFormat.relative(
+                      channel.release.releaseDate,
+                      appendIfAfter: 'ago',
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  VersionInstallButton(channel),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

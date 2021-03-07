@@ -1,8 +1,11 @@
-//import 'package:fvm_app/providers/projects_provider.dart';
+import 'dart:io';
+import 'package:fvm_app/providers/projects_provider.dart';
 import 'package:fvm_app/utils/dependencies.dart';
 import 'package:fvm_app/utils/http_cache.dart';
 import 'package:github/github.dart';
 import 'package:hooks_riverpod/all.dart';
+import 'package:pub_api_client/pub_api_client.dart';
+import 'package:pubspec_parse/pubspec_parse.dart';
 
 final getGithubRepositoryProvider =
     FutureProvider.family<Repository, RepositorySlug>((ref, repoSlug) async {
@@ -18,25 +21,27 @@ final getGithubRepositoryProvider =
 
 // ignore: top_level_function_literal_block
 final projectDependenciesProvider = FutureProvider((ref) async {
-  //final projects = ref.watch(projectsProvider.state);
-  //TODO: Reenable this
+  final projects = ref.watch(projectsProvider.state);
   final packages = <String, int>{};
 
-  //for (var project in projects.list) {
-    //final pubspec = project.pubspec;
-    //final deps = pubspec.dependencies.toList();
-    //final devDeps = pubspec.devDependencies.toList();
-    //final allDeps = [...deps, ...devDeps];
+  for (var project in projects.list) {
+    final pubspecPath = '${project.projectDir.absolute.path}\\pubspec.yaml';
+    print(pubspecPath);
+    final pubspec = Pubspec.parse(File(pubspecPath).readAsStringSync());
+    final deps = pubspec.dependencies;
+    final devDeps = pubspec.devDependencies;
+    final allDeps = {...deps, ...devDeps};
 
     // Loop through all dependencies
     // ignore: avoid_function_literals_in_foreach_calls
-    //allDeps.forEach((dep) {
+    allDeps.forEach((str, dep) {
+      var isHosted = dep.toString().contains("HostedDependency");
       // ignore: invalid_use_of_protected_member
-      //if (dep.hosted != null && !isGooglePubPackage(dep.package())) {
-        //packages.update(dep.package(), (val) => ++val, ifAbsent: () => 1);
-      //}
-//});
-  //}
+      if (isHosted != null && !isGooglePubPackage(str)) {
+        packages.update(str, (val) => ++val, ifAbsent: () => 1);
+      }
+});
+  }
   final pkgs = await fetchAllDependencies(packages);
   pkgs..sort((a, b) => a.compareTo(b));
   // Reverse order

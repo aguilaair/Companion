@@ -49,7 +49,7 @@ class ChannelShowcase extends StatelessWidget {
                   children: [
                     TypographyTitle(channel.name),
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 70),
+                      constraints: const BoxConstraints(maxWidth: 70),
                       child: TypographySubheading(channel.release.version),
                     ),
                     const SizedBox(height: 5),

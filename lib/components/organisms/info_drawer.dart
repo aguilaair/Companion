@@ -32,43 +32,43 @@ class InfoDrawer extends HookWidget {
     }
 
     if (selected == null) {
-      return Drawer(
-        elevation: 10,
-        child: Container(
-          color: Theme.of(context).cardColor,
-          child: const Center(child: TypographyCaption('Nothing selected')),
-        ),
+      return const Drawer(
+        elevation: 0,
+        child: Center(child: TypographyCaption('Nothing selected')),
       );
     }
 
     return Drawer(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).cardColor,
-        appBar: AppBar(
-          title: TypographyTitle(selected.name),
-          leading: IconButton(
-            icon: const Icon(Icons.close),
-            iconSize: 20,
-            splashRadius: 20,
-            onPressed: onClose,
+      elevation: 0,
+      child: Container(
+        child: Scaffold(
+          backgroundColor: Theme.of(context).cardColor,
+          appBar: AppBar(
+            title: TypographyTitle(selected.name),
+            leading: IconButton(
+              icon: const Icon(Icons.close),
+              iconSize: 20,
+              splashRadius: 20,
+              onPressed: onClose,
+            ),
+            shadowColor: Colors.transparent,
           ),
-          shadowColor: Colors.transparent,
-        ),
-        bottomNavigationBar: Container(
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.all(0),
-          child: VersionInstallButton(
-            selected,
-            expanded: true,
+          bottomNavigationBar: Container(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(0),
+            child: VersionInstallButton(
+              selected,
+              expanded: true,
+            ),
           ),
-        ),
-        body: Scrollbar(
-          child: ListView(
-            children: [
-              ReferenceInfoTile(selected),
-              CacheInfoTile(selected),
-              ReleaseInfoSection(selected)
-            ],
+          body: Scrollbar(
+            child: ListView(
+              children: [
+                ReferenceInfoTile(selected),
+                CacheInfoTile(selected),
+                ReleaseInfoSection(selected)
+              ],
+            ),
           ),
         ),
       ),

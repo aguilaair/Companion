@@ -10,7 +10,6 @@ import 'package:hive/hive.dart';
 
 final getGithubRepositoryProvider =
     FutureProvider.family<Repository, RepositorySlug>((ref, repoSlug) async {
-  print(Hive.box("settings").get("gh_token"));
   final github = GitHub(
     auth: Authentication.withToken(Hive.box("settings").get("gh_token")),
     client: CacheHttpClient(),
@@ -28,7 +27,6 @@ final projectDependenciesProvider = FutureProvider((ref) async {
 
   for (var project in projects.list) {
     final pubspecPath = '${project.projectDir.absolute.path}\\pubspec.yaml';
-    print(pubspecPath);
     final pubspec = Pubspec.parse(File(pubspecPath).readAsStringSync());
     final deps = pubspec.dependencies;
     final devDeps = pubspec.devDependencies;

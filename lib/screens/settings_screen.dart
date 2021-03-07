@@ -8,6 +8,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 
 class SettingsScreen extends HookWidget {
   const SettingsScreen({Key key}) : super(key: key);
@@ -39,6 +41,7 @@ class SettingsScreen extends HookWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         sections: [
           SettingsSection(
+            title: "FVM Settings",
             tiles: [
               SettingsTile(
                 title: 'Flutter Projects',
@@ -84,6 +87,39 @@ This will disable Google's crash reporting and analytics, when installing a new 
                   settings.skipSetup = value;
                   await handleSave();
                 },
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: "App Settings",
+            tiles: [
+              SettingsTile(
+                title: "Theme",
+                subtitle: "Which theme to start the app with.",
+                leading: const Icon(Icons.color_lens_rounded),
+                trailing: ValueListenableBuilder(
+                  builder: (context, value, child) => DropdownButton(
+                    items: const [
+                      DropdownMenuItem(
+                        child: Text("System"),
+                        value: "system",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Light"),
+                        value: "light",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Dark"),
+                        value: "dark",
+                      ),
+                    ],
+                    onChanged: (brightness) {
+                      value.put("brightness", brightness);
+                    },
+                    value: value.get("brightness"),
+                  ),
+                  valueListenable: Hive.box('settings').listenable(),
+                ),
               ),
             ],
           ),

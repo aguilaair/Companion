@@ -71,7 +71,7 @@ class VersionInstallButton extends HookWidget {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.resolveWith(
                 (states) => Colors.white10,
-                ),
+              ),
             ),
             onPressed: version.isInstalled ? () {} : onInstall,
             child: installIcon(),
@@ -85,10 +85,10 @@ class VersionInstallButton extends HookWidget {
         width: 100,
         child: TextButton.icon(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.resolveWith(
-                (states) => Colors.white10,
-                ),
+            backgroundColor: MaterialStateProperty.resolveWith(
+              (states) => Colors.white10,
             ),
+          ),
           onPressed: version.isInstalled ? () {} : onInstall,
           icon: installIcon(),
           label: Text(

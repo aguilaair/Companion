@@ -11,6 +11,7 @@ class EmptyProjects extends StatelessWidget {
   Widget build(BuildContext context) {
     return EmptyDataSet(
       icon: const Icon(MdiIcons.folder),
+      iconColor: Theme.of(context).iconTheme.color,
       child: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(
@@ -30,10 +31,8 @@ class EmptyProjects extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton.icon(
               style: ButtonStyle(
-                padding: 
-                MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
-                  (states) => const EdgeInsets.fromLTRB(30, 15, 30, 15)
-                  ),
+                padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+                    (states) => const EdgeInsets.fromLTRB(30, 15, 30, 15)),
               ),
               onPressed: () {
                 context

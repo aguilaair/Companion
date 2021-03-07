@@ -29,10 +29,8 @@ class EmptyVersions extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton.icon(
               style: ButtonStyle(
-                padding: 
-                MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
-                  (states) => const EdgeInsets.fromLTRB(30, 15, 30, 15)
-                  ),
+                padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+                    (states) => const EdgeInsets.fromLTRB(30, 15, 30, 15)),
               ),
               onPressed: () {
                 context

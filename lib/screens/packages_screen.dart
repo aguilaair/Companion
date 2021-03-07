@@ -38,7 +38,7 @@ class PackagesScreen extends HookWidget {
                       children: [
                         FvmListTile(
                           leading: CircleAvatar(
-                            backgroundColor: Colors.black26,
+                            //backgroundColor: Colors.black26,
                             child: Text(position.toString()),
                           ),
                           title: Text(pkg.package.name),

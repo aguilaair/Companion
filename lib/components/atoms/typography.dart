@@ -101,6 +101,7 @@ class TypographySubheading extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.subtitle2,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

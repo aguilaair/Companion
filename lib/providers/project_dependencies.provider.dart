@@ -3,7 +3,7 @@ import 'package:fvm_app/providers/projects_provider.dart';
 import 'package:fvm_app/utils/dependencies.dart';
 import 'package:fvm_app/utils/http_cache.dart';
 import 'package:github/github.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_api_client/pub_api_client.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 
@@ -40,7 +40,7 @@ final projectDependenciesProvider = FutureProvider((ref) async {
       if (isHosted != null && !isGooglePubPackage(str)) {
         packages.update(str, (val) => ++val, ifAbsent: () => 1);
       }
-});
+    });
   }
   final pkgs = await fetchAllDependencies(packages);
   pkgs..sort((a, b) => a.compareTo(b));

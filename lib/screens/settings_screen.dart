@@ -121,6 +121,33 @@ This will disable Google's crash reporting and analytics, when installing a new 
                   valueListenable: Hive.box('settings').listenable(),
                 ),
               ),
+              SettingsTile(
+                title: "Github Token",
+                leading: const Icon(MdiIcons.github),
+                subtitle: "The token will be used to fetch"
+                    " data for your installed packages",
+                trailing: Container(
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  constraints:
+                      const BoxConstraints(maxWidth: 390, minWidth: 50),
+                  child: ValueListenableBuilder(
+                    valueListenable: Hive.box("settings").listenable(),
+                    builder: (context, value, child) => TextField(
+                      expands: false,
+                      maxLength: 40,
+                      autocorrect: false,
+                      onChanged: (text) => value.put("gh_token", text),
+                      decoration: InputDecoration(
+                        hintText: value.get("gh_token"),
+                        counterText: "",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ],

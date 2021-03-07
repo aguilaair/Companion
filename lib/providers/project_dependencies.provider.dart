@@ -6,11 +6,13 @@ import 'package:github/github.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_api_client/pub_api_client.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
+import 'package:hive/hive.dart';
 
 final getGithubRepositoryProvider =
     FutureProvider.family<Repository, RepositorySlug>((ref, repoSlug) async {
+  print(Hive.box("settings").get("gh_token"));
   final github = GitHub(
-    auth: Authentication.withToken('fa01cbd4098cb70784d31b8383e32f7f68ee9526'),
+    auth: Authentication.withToken(Hive.box("settings").get("gh_token")),
     client: CacheHttpClient(),
   );
   if (repoSlug == null) {

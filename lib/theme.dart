@@ -35,7 +35,7 @@ ThemeData lightTheme() {
     // scaffoldBackgroundColor: const Color(0xFF0E0E0E),
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      color: Color(0xFFbdbdbd),
+      color: Color(0xFFF5F5F5),
     ),
     cardTheme: const CardTheme(shape: RoundedRectangleBorder()),
     dialogTheme: DialogTheme(

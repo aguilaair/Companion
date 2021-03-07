@@ -111,6 +111,7 @@ class AppShell extends HookWidget {
                           Image.asset(
                             "assets/fvm-icon.png",
                             width: 50,
+                            gaplessPlayback: true,
                           ),
                           LayoutSize.isSmall
                               ? Container()

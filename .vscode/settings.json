@@ -2,4 +2,5 @@
   "search.exclude": {
     "**/.fvm": true
   },
+  "dart.flutterSdkPath": "\\Users\\eduar\\fvm\\versions\\stable",
 }

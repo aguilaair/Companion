@@ -102,7 +102,25 @@ class AppShell extends HookWidget {
               child: Row(
                 children: <Widget>[
                   NavigationRail(
-                    leading: const SizedBox(height: 10),
+                    leading: Container(
+                      padding: const EdgeInsets.all(15),
+                      //constraints: BoxConstraints(maxWidth: 15),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            "assets/fvm-icon.png",
+                            width: 50,
+                          ),
+                          LayoutSize.isSmall
+                              ? Container()
+                              : Text(
+                                  " Sidekick",
+                                  style: Theme.of(context).textTheme.headline5,
+                                )
+                        ],
+                      ),
+                    ),
                     selectedIndex: selectedIndex.value,
                     minWidth: kNavigationWidth,
                     minExtendedWidth: kNavigationWidthExtended,

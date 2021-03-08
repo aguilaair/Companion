@@ -1,7 +1,7 @@
 // ignore: top_level_function_literal_block
-import 'package:fvm_app/providers/channels.provider.dart';
-import 'package:fvm_app/providers/flutter_releases.provider.dart';
-import 'package:fvm_app/providers/releases.provider.dart';
+import 'package:Companion/providers/channels.provider.dart';
+import 'package:Companion/providers/flutter_releases.provider.dart';
+import 'package:Companion/providers/releases.provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // ignore: top_level_function_literal_block

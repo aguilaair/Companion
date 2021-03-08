@@ -1,8 +1,8 @@
-import 'package:fvm_app/dto/version.dto.dart';
-import 'package:fvm_app/providers/installed_versions.provider.dart';
-import 'package:fvm_app/providers/fvm_queue.provider.dart';
-import 'package:fvm_app/providers/projects_provider.dart';
-import 'package:fvm_app/utils/notify.dart';
+import 'package:Companion/dto/version.dto.dart';
+import 'package:Companion/providers/installed_versions.provider.dart';
+import 'package:Companion/providers/fvm_queue.provider.dart';
+import 'package:Companion/providers/projects_provider.dart';
+import 'package:Companion/utils/notify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

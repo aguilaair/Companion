@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:fvm_app/utils/github_parse.dart';
-import 'package:fvm_app/utils/http_cache.dart';
+import 'package:Companion/utils/github_parse.dart';
+import 'package:Companion/utils/http_cache.dart';
 import 'package:pub_api_client/pub_api_client.dart';
 
 // ignore: avoid_classes_with_only_static_members

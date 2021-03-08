@@ -1,17 +1,17 @@
-import 'package:fvm_app/components/atoms/list_tile.dart';
-import 'package:fvm_app/components/atoms/loading_indicator.dart';
-import 'package:fvm_app/components/atoms/screen.dart';
-import 'package:fvm_app/components/atoms/typography.dart';
-import 'package:fvm_app/components/molecules/github_info_display.dart';
-import 'package:fvm_app/components/molecules/package_score_display.dart';
+import 'package:Companion/components/atoms/list_tile.dart';
+import 'package:Companion/components/atoms/loading_indicator.dart';
+import 'package:Companion/components/atoms/screen.dart';
+import 'package:Companion/components/atoms/typography.dart';
+import 'package:Companion/components/molecules/github_info_display.dart';
+import 'package:Companion/components/molecules/package_score_display.dart';
 
-import 'package:fvm_app/providers/project_dependencies.provider.dart';
+import 'package:Companion/providers/project_dependencies.provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fvm_app/utils/github_parse.dart';
+import 'package:Companion/utils/github_parse.dart';
 
-import 'package:fvm_app/utils/open_link.dart';
+import 'package:Companion/utils/open_link.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PackagesScreen extends HookWidget {

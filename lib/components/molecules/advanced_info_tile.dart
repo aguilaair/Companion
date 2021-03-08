@@ -1,10 +1,10 @@
-import 'package:fvm_app/components/atoms/copy_button.dart';
-import 'package:fvm_app/components/atoms/group_tile.dart';
-import 'package:fvm_app/components/atoms/list_tile.dart';
-import 'package:fvm_app/components/atoms/typography.dart';
-import 'package:fvm_app/dto/version.dto.dart';
+import 'package:Companion/components/atoms/copy_button.dart';
+import 'package:Companion/components/atoms/group_tile.dart';
+import 'package:Companion/components/atoms/list_tile.dart';
+import 'package:Companion/components/atoms/typography.dart';
+import 'package:Companion/dto/version.dto.dart';
 import 'package:flutter/material.dart';
-import 'package:fvm_app/utils/open_link.dart';
+import 'package:Companion/utils/open_link.dart';
 
 class AdvancedInfoTile extends StatelessWidget {
   final VersionDto version;

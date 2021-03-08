@@ -1,4 +1,4 @@
-name: fvm_app
+name: Companion
 description: Flutter Version Manager.
 
 # The following line prevents the package from being accidentally published to
@@ -68,12 +68,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/fvm-icon.png
+    - assets/icon.png
 
 msix_config:
-  display_name: Sidekick
+  display_name: Companion
   publisher_display_name: Eduardo Moreno
-  identity_name: dev.eduardom.sidekick
+  identity_name: dev.eduardom.Companion
   msix_version: 0.3.0.0
   #  publisher: CN=Eduardo Moreno, O=Eduardo Moreno, L=Madrid, S=Madrid, C=ES
   logo_path: .\assets\fvm-icon.png

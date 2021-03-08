@@ -1,24 +1,24 @@
 import 'package:animations/animations.dart';
-import 'package:fvm_app/components/atoms/nav_button.dart';
-import 'package:fvm_app/components/atoms/shortcuts.dart';
-import 'package:fvm_app/constants.dart';
-import 'package:fvm_app/providers/navigation_provider.dart';
-import 'package:fvm_app/providers/selected_info_provider.dart';
-import 'package:fvm_app/screens/packages_screen.dart';
-import 'package:fvm_app/screens/settings_screen.dart';
-import 'package:fvm_app/utils/layout_size.dart';
+import 'package:Companion/components/atoms/nav_button.dart';
+import 'package:Companion/components/atoms/shortcuts.dart';
+import 'package:Companion/constants.dart';
+import 'package:Companion/providers/navigation_provider.dart';
+import 'package:Companion/providers/selected_info_provider.dart';
+import 'package:Companion/screens/packages_screen.dart';
+import 'package:Companion/screens/settings_screen.dart';
+import 'package:Companion/utils/layout_size.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:fvm_app/components/organisms/app_bottom_bar.dart';
-import 'package:fvm_app/components/organisms/search_bar.dart';
-import 'package:fvm_app/components/organisms/info_drawer.dart';
+import 'package:Companion/components/organisms/app_bottom_bar.dart';
+import 'package:Companion/components/organisms/search_bar.dart';
+import 'package:Companion/components/organisms/info_drawer.dart';
 
-import 'package:fvm_app/screens/explore_screen.dart';
-import 'package:fvm_app/screens/home_screen.dart';
-import 'package:fvm_app/screens/projects_screen.dart';
+import 'package:Companion/screens/explore_screen.dart';
+import 'package:Companion/screens/home_screen.dart';
+import 'package:Companion/screens/projects_screen.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -103,20 +103,25 @@ class AppShell extends HookWidget {
                 children: <Widget>[
                   NavigationRail(
                     leading: Container(
-                      padding: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.only(
+                        bottom: 15,
+                        left: 15,
+                        right: 15,
+                        top: 25,
+                      ),
                       //constraints: BoxConstraints(maxWidth: 15),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            "assets/fvm-icon.png",
+                            "assets/icon.png",
                             width: 50,
                             gaplessPlayback: true,
                           ),
                           LayoutSize.isSmall
                               ? Container()
                               : Text(
-                                  " Sidekick",
+                                  " Companion",
                                   style: Theme.of(context).textTheme.headline5,
                                 )
                         ],

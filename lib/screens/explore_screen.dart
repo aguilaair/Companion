@@ -1,19 +1,19 @@
-import 'package:fvm_app/components/atoms/sliver_app_bar_title.dart';
-import 'package:fvm_app/components/atoms/typography.dart';
-import 'package:fvm_app/components/molecules/channel_showcase.dart';
-import 'package:fvm_app/components/molecules/version_install_button.dart';
-import 'package:fvm_app/components/molecules/version_item.dart';
-import 'package:fvm_app/providers/channels.provider.dart';
+import 'package:Companion/components/atoms/sliver_app_bar_title.dart';
+import 'package:Companion/components/atoms/typography.dart';
+import 'package:Companion/components/molecules/channel_showcase.dart';
+import 'package:Companion/components/molecules/version_install_button.dart';
+import 'package:Companion/components/molecules/version_item.dart';
+import 'package:Companion/providers/channels.provider.dart';
 
-import 'package:fvm_app/providers/filterable_releases.provider.dart';
-import 'package:fvm_app/providers/master.provider.dart';
-import 'package:fvm_app/providers/settings.provider.dart';
+import 'package:Companion/providers/filterable_releases.provider.dart';
+import 'package:Companion/providers/master.provider.dart';
+import 'package:Companion/providers/settings.provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fvm/fvm.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:fvm_app/utils/extensions.dart';
+import 'package:Companion/utils/extensions.dart';
 
 class ExploreScreen extends HookWidget {
   const ExploreScreen({Key key}) : super(key: key);

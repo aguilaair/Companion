@@ -1,10 +1,10 @@
-import 'package:fvm_app/dto/channel.dto.dart';
-import 'package:fvm_app/dto/release.dto.dart';
+import 'package:Companion/dto/channel.dto.dart';
+import 'package:Companion/dto/release.dto.dart';
 
-import 'package:fvm_app/providers/channels.provider.dart';
-import 'package:fvm_app/providers/releases.provider.dart';
+import 'package:Companion/providers/channels.provider.dart';
+import 'package:Companion/providers/releases.provider.dart';
 
-import 'package:fvm_app/providers/projects_provider.dart';
+import 'package:Companion/providers/projects_provider.dart';
 import 'package:fvm/fvm.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

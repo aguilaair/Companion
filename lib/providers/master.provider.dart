@@ -1,4 +1,4 @@
-import 'package:fvm_app/providers/flutter_releases.provider.dart';
+import 'package:Companion/providers/flutter_releases.provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // ignore: top_level_function_literal_block

@@ -1,11 +1,11 @@
-import 'package:fvm_app/components/atoms/typography.dart';
-import 'package:fvm_app/components/molecules/version_install_button.dart';
-import 'package:fvm_app/dto/channel.dto.dart';
-import 'package:fvm_app/providers/selected_info_provider.dart';
+import 'package:Companion/components/atoms/typography.dart';
+import 'package:Companion/components/molecules/version_install_button.dart';
+import 'package:Companion/dto/channel.dto.dart';
+import 'package:Companion/providers/selected_info_provider.dart';
 
 import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
-import 'package:fvm_app/utils/layout_size.dart';
+import 'package:Companion/utils/layout_size.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

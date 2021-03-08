@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fvm_app/dto/version.dto.dart';
-import 'package:fvm_app/providers/fvm_queue.provider.dart';
+import 'package:Companion/dto/version.dto.dart';
+import 'package:Companion/providers/fvm_queue.provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

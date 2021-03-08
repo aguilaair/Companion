@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:fvm_app/providers/projects_provider.dart';
-import 'package:fvm_app/utils/dependencies.dart';
-import 'package:fvm_app/utils/http_cache.dart';
+import 'package:Companion/providers/projects_provider.dart';
+import 'package:Companion/utils/dependencies.dart';
+import 'package:Companion/utils/http_cache.dart';
 import 'package:github/github.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_api_client/pub_api_client.dart';

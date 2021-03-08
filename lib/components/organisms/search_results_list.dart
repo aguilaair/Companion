@@ -1,8 +1,8 @@
-import 'package:fvm_app/components/atoms/sliver_section_header.dart';
-import 'package:fvm_app/components/atoms/sliver_section.dart';
-import 'package:fvm_app/components/molecules/project_item.dart';
-import 'package:fvm_app/components/molecules/version_item.dart';
-import 'package:fvm_app/providers/search_results_provider.dart';
+import 'package:Companion/components/atoms/sliver_section_header.dart';
+import 'package:Companion/components/atoms/sliver_section.dart';
+import 'package:Companion/components/molecules/project_item.dart';
+import 'package:Companion/components/molecules/version_item.dart';
+import 'package:Companion/providers/search_results_provider.dart';
 import 'package:flutter/material.dart';
 
 class SearchResultsList extends StatelessWidget {

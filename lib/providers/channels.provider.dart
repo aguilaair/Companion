@@ -1,5 +1,5 @@
-import 'package:fvm_app/dto/channel.dto.dart';
-import 'package:fvm_app/providers/flutter_releases.provider.dart';
+import 'package:Companion/dto/channel.dto.dart';
+import 'package:Companion/providers/flutter_releases.provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fvm/fvm.dart';
 

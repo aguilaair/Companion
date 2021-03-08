@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:fvm_app/app_shell.dart';
+import 'package:Companion/app_shell.dart';
 
-import 'package:fvm_app/theme.dart';
+import 'package:Companion/theme.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fvm_app/utils/get_theme_mode.dart';
-import 'package:fvm_app/utils/init_hive.dart';
+import 'package:Companion/utils/get_theme_mode.dart';
+import 'package:Companion/utils/init_hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:oktoast/oktoast.dart';
@@ -17,7 +17,7 @@ void main() async {
   await initHive();
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowTitle('Sidekick');
+    setWindowTitle('Companion');
     setWindowMinSize(const Size(700, 500));
     setWindowMaxSize(Size.infinite);
   }

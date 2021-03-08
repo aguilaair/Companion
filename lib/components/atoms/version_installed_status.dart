@@ -1,9 +1,9 @@
-import 'package:fvm_app/components/atoms/setup_button.dart';
-import 'package:fvm_app/dto/master.dto.dart';
-import 'package:fvm_app/dto/version.dto.dart';
-import 'package:fvm_app/dto/channel.dto.dart';
+import 'package:Companion/components/atoms/setup_button.dart';
+import 'package:Companion/dto/master.dto.dart';
+import 'package:Companion/dto/version.dto.dart';
+import 'package:Companion/dto/channel.dto.dart';
 
-import 'package:fvm_app/providers/fvm_queue.provider.dart';
+import 'package:Companion/providers/fvm_queue.provider.dart';
 
 import 'package:flutter/material.dart';
 

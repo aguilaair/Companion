@@ -1,9 +1,9 @@
 import 'dart:collection';
 
-import 'package:fvm_app/providers/fvm_cache.provider.dart';
-import 'package:fvm_app/providers/projects_provider.dart';
-import 'package:fvm_app/providers/settings.provider.dart';
-import 'package:fvm_app/utils/notify.dart';
+import 'package:Companion/providers/fvm_cache.provider.dart';
+import 'package:Companion/providers/projects_provider.dart';
+import 'package:Companion/providers/settings.provider.dart';
+import 'package:Companion/utils/notify.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

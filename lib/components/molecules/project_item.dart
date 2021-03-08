@@ -1,8 +1,8 @@
-import 'package:fvm_app/components/atoms/list_tile.dart';
-import 'package:fvm_app/components/atoms/typography.dart';
-import 'package:fvm_app/components/molecules/project_version_select.dart';
+import 'package:Companion/components/atoms/list_tile.dart';
+import 'package:Companion/components/atoms/typography.dart';
+import 'package:Companion/components/molecules/project_version_select.dart';
 
-import 'package:fvm_app/providers/installed_versions.provider.dart';
+import 'package:Companion/providers/installed_versions.provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

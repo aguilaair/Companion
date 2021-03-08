@@ -1,6 +1,6 @@
-import 'package:fvm_app/components/atoms/console.dart';
+import 'package:Companion/components/atoms/console.dart';
 
-import 'package:fvm_app/providers/fvm_queue.provider.dart';
+import 'package:Companion/providers/fvm_queue.provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

@@ -14,7 +14,7 @@ import 'package:oktoast/oktoast.dart';
 import 'package:window_size/window_size.dart';
 
 void main() async {
-  await initHive();
+  initHive().onError((error, stackTrace) => exit(0));
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowTitle('Companion');

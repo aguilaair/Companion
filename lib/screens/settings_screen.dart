@@ -116,7 +116,7 @@ This will disable Google's crash reporting and analytics, when installing a new 
                     onChanged: (brightness) {
                       value.put("brightness", brightness);
                     },
-                    value: value.get("brightness"),
+                    value: value.get("brightness", defaultValue: "system"),
                   ),
                   valueListenable: Hive.box('settings').listenable(),
                 ),

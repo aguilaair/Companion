@@ -69,3 +69,16 @@ flutter:
   uses-material-design: true
   assets:
     - assets/fvm-icon.png
+
+msix_config:
+  display_name: Sidekick
+  publisher_display_name: Eduardo Moreno
+  identity_name: dev.eduardom.sidekick
+  msix_version: 0.3.0.0
+  #  publisher: CN=Eduardo Moreno, O=Eduardo Moreno, L=Madrid, S=Madrid, C=ES
+  logo_path: .\assets\fvm-icon.png
+  start_menu_icon_path: .\assets\fvm-icon.png
+  tile_icon_path: .\assets\fvm-icon.png
+  icons_background_color: transparent
+  architecture: x64
+  capabilities: "internetClient,removableStorage"

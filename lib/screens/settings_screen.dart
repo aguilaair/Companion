@@ -1,4 +1,5 @@
 import 'package:Companion/components/atoms/screen.dart';
+import 'package:Companion/components/molecules/app_version_disply.dart';
 import 'package:Companion/providers/projects_provider.dart';
 import 'package:Companion/providers/settings.provider.dart';
 import 'package:Companion/utils/notify.dart';
@@ -127,7 +128,7 @@ This will disable Google's crash reporting and analytics, when installing a new 
                 subtitle: "The token will be used to fetch"
                     " data for your installed packages",
                 trailing: Container(
-                  width: MediaQuery.of(context).size.width * 0.4,
+                  width: MediaQuery.of(context).size.width * 0.3,
                   constraints:
                       const BoxConstraints(maxWidth: 390, minWidth: 50),
                   child: ValueListenableBuilder(
@@ -147,7 +148,13 @@ This will disable Google's crash reporting and analytics, when installing a new 
                     ),
                   ),
                 ),
-              )
+              ),
+              const SettingsTile(
+                title: "App version",
+                subtitle: "App version and updates",
+                leading: Icon(Icons.info_outline_rounded),
+                trailing: AppVersionInfo(),
+              ),
             ],
           ),
         ],

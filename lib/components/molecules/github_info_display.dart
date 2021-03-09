@@ -62,7 +62,7 @@ class GithubInfoDisplay extends HookWidget {
             const SizedBox(width: 10),
             TextButton.icon(
               onPressed: () async {
-                await openLink('${data.htmlUrl}/issues');
+                await openLink('${data.htmlUrl}/network/members');
               },
               style: const ButtonStyle(
                 alignment: Alignment.centerLeft,

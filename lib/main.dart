@@ -32,7 +32,7 @@ class FvmApp extends StatelessWidget {
       child: ValueListenableBuilder(
         valueListenable: Hive.box('settings').listenable(),
         builder: (context, value, child) => MaterialApp(
-          title: 'fvm',
+          title: 'Companion',
           debugShowCheckedModeBanner: false,
           theme: lightTheme(),
           darkTheme: darkTheme(),

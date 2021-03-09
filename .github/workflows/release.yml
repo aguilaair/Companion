@@ -28,7 +28,7 @@ jobs:
         run: flutter pub get
       
       - name: Flutter build app
-        run: flutter build linux
+        run: flutter build linux --build-name=${{ github.ref }}
         
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1
@@ -44,7 +44,7 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: linux.zip
+          file: linux-${{ github.ref }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
   build-macos:
@@ -69,7 +69,7 @@ jobs:
         run: flutter pub get
       
       - name: Flutter build app
-        run: flutter build macos
+        run: flutter build macos --build-name=${{ github.ref }}
         
       - name: Compress artifacts
         run: zip -r macos.zip build/macos/Build/Products/Release/fvm.app
@@ -82,7 +82,7 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: macos.zip
+          file: macos-${{ github.ref }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
   build-windows:
@@ -104,7 +104,7 @@ jobs:
         run: flutter pub get
       
       - name: Flutter build app
-        run: flutter build windows
+        run: flutter build windows --build-name=${{ github.ref }}
         
       - name: Compress artifacts
         run: tar.exe -a -c -f windows.zip build/windows/Runner/release
@@ -117,7 +117,7 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: windows.zip
+          file: windows-${{ github.ref }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
 

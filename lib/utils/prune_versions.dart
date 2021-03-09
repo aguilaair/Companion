@@ -32,6 +32,7 @@ Future<void> pruneVersionsDialog(BuildContext context) async {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Theme.of(context).cardColor,
           title: const Text('Prune unused versions'),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog

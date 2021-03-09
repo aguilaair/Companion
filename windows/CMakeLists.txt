@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(appfvm LANGUAGES CXX)
+project(appcompanion LANGUAGES CXX)
 
-set(BINARY_NAME "fvm")
+set(BINARY_NAME "Comapnion")
 
 cmake_policy(SET CMP0063 NEW)
 

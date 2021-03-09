@@ -7,8 +7,8 @@ create-dmg \
   --window-size 800 529 \
   --icon-size 130 \
   --text-size 14 \
-  --icon "fvm.app" 260 250 \
-  --hide-extension "fvm.app" \
+  --icon "Companion.app" 260 250 \
+  --hide-extension "Companion.app" \
   --app-drop-link 540 250 \
   --hdiutil-quiet \
   "fvm.dmg" \

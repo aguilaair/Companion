@@ -41,7 +41,7 @@ class Console extends HookWidget {
       crossFadeState:
           processing ? CrossFadeState.showSecond : CrossFadeState.showFirst,
       firstChild: Container(
-        color: Theme.of(context).dividerColor,
+        color: Theme.of(context).dividerColor.withOpacity(0.1),
         height: 40,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -64,7 +64,7 @@ class Console extends HookWidget {
       secondChild: GestureDetector(
         onTap: onExpand,
         child: Container(
-          color: Colors.black45,
+          color: Theme.of(context).dividerColor.withOpacity(0.1),
           height: expand ? 160 : 40,
           constraints: expand
               ? const BoxConstraints(maxHeight: 160)

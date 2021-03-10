@@ -65,7 +65,7 @@ class VersionInstallButton extends HookWidget {
     Widget collapsedButton() {
       return SizedBox(
         height: 50,
-        width: 50,
+        width: 40,
         child: Center(
           child: TextButton(
             style: ButtonStyle(

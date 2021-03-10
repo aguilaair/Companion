@@ -28,7 +28,7 @@ jobs:
         run: flutter pub get
 
       - name: Flutter build app
-        run: flutter build linux --build-name=${{ github.ref }}
+        run: flutter build linux
 
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1
@@ -69,7 +69,7 @@ jobs:
         run: flutter pub get
 
       - name: Flutter build app
-        run: flutter build macos --build-name=${{ github.ref }}
+        run: flutter build macos
 
       - name: Compress artifacts
         run: zip -r macos.zip build/macos/Build/Products/Release/Companion.app
@@ -104,7 +104,7 @@ jobs:
         run: flutter pub get
 
       - name: Flutter build app
-        run: flutter build windows --build-name=${{ github.ref }}
+        run: flutter build windows
         
       - name: Create MSIX
         run: flutter pub run msix:create

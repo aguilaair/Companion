@@ -1,5 +1,5 @@
 import 'package:Companion/components/atoms/screen.dart';
-import 'package:Companion/components/molecules/app_version_disply.dart';
+import 'package:Companion/components/molecules/app_version_display.dart';
 import 'package:Companion/providers/projects_provider.dart';
 import 'package:Companion/providers/settings.provider.dart';
 import 'package:Companion/utils/notify.dart';

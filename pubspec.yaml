@@ -41,7 +41,7 @@ dependencies:
   url_launcher: ^5.7.10
   watcher: ^0.9.7+15
   google_fonts: ^1.1.1
-  filesize: ^1.0.4
+  filesize_plus: ^1.1.1
   hooks_riverpod: ^0.12.1
   date_time_format: ^1.0.0+4
   flutter_hooks: ^0.14.1

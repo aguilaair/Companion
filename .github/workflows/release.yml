@@ -31,7 +31,7 @@ jobs:
         run: flutter pub get
         
       - name: Set new Flutter version
-        run: cider version ${{ github.ref }}
+        run: cider version ${{ github.event.release.tag_name }}
         
       - name: Flutter get packages (again)
         run: flutter pub get
@@ -53,7 +53,7 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: linux-${{ github.ref }}.zip
+          file: linux-${{ github.event.release.tag_name }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
   build-macos:
@@ -81,7 +81,7 @@ jobs:
         run: flutter pub get
         
       - name: Set new Flutter version
-        run: cider version ${{ github.ref }}
+        run: cider version ${{ github.event.release.tag_name }}
         
       - name: Flutter get packages (again)
         run: flutter pub get
@@ -100,7 +100,7 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: macos-${{ github.ref }}.zip
+          file: macos-${{ github.event.release.tag_name }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
   build-windows:
@@ -125,7 +125,7 @@ jobs:
         run: flutter pub get
         
       - name: Set new Flutter version
-        run: cider version ${{ github.ref }}
+        run: cider version ${{ github.event.release.tag_name }}
         
       - name: Flutter get packages (again)
         run: flutter pub get
@@ -147,6 +147,6 @@ jobs:
           # GitHub token.
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # Local file to upload.
-          file: windows-${{ github.ref }}.zip
+          file: windows-${{ github.event.release.tag_name }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}

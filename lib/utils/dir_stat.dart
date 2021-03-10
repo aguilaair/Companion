@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:filesize/filesize.dart';
+import 'package:filesize_plus/filesize_plus.dart';
 
 class DirectorySizeInfo {
   final int fileCount;

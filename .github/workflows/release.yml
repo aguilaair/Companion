@@ -105,6 +105,9 @@ jobs:
 
       - name: Flutter build app
         run: flutter build windows --build-name=${{ github.ref }}
+        
+      - name: Create MSIX
+        run: flutter pub run msix:create
 
       - name: Compress artifacts
         run: tar.exe -a -c -f windows.zip build/windows/Runner/release

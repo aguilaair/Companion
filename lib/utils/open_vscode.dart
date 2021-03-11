@@ -14,7 +14,6 @@ void openInVSCode(String path) {
           " make sure that it is added to"
           " PATH. Opening via URL...");
       openLink("vscode://file/$path");
-      return null;
     },
   );
 }

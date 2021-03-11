@@ -92,7 +92,7 @@ class VersionInstallButton extends HookWidget {
           onPressed: version.isInstalled ? () {} : onInstall,
           icon: installIcon(),
           label: Text(
-            version.isInstalled ? 'Install' : 'Installed',
+            version.isInstalled ? 'Installed' : 'Install',
             maxLines: 1,
             overflow: TextOverflow.clip,
           ),

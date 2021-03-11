@@ -25,7 +25,6 @@ class GithubInfoDisplay extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // TODO: Should these do something?
             TextButton.icon(
               onPressed: () async {
                 await openLink('${data.htmlUrl}/stargazers');

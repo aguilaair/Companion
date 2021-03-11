@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/logo-white.svg" width="300" />
+<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/logo-white.png" width="300" />
 
 [![Build (Linux, Mac OS, Windows)](https://github.com/aguilaair/Companion/actions/workflows/main.yml/badge.svg)](https://github.com/aguilaair/Companion/actions/workflows/main.yml) 
 
@@ -14,5 +14,5 @@ This app allows you to install, manage and view all of your flutter versions (ma
 
 It is still under heavy development and may not be completely stable, if you find an issue please open it so that it can be addressed. 
 
-<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-1.svg" />
-<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-2.svg" />
+<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-1.png" />
+<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-2.png" />

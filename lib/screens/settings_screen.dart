@@ -99,25 +99,34 @@ This will disable Google's crash reporting and analytics, when installing a new 
                 subtitle: "Which theme to start the app with.",
                 leading: const Icon(Icons.color_lens_rounded),
                 trailing: ValueListenableBuilder(
-                  builder: (context, value, child) => DropdownButton(
-                    items: const [
-                      DropdownMenuItem(
-                        child: Text("System"),
-                        value: "system",
-                      ),
-                      DropdownMenuItem(
-                        child: Text("Light"),
-                        value: "light",
-                      ),
-                      DropdownMenuItem(
-                        child: Text("Dark"),
-                        value: "dark",
-                      ),
-                    ],
-                    onChanged: (brightness) {
-                      value.put("brightness", brightness);
-                    },
-                    value: value.get("brightness", defaultValue: "system"),
+                  builder: (context, value, child) => Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).dividerColor.withOpacity(0.02),
+                    ),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    constraints:
+                        const BoxConstraints(minWidth: 110, maxWidth: 165),
+                    child: DropdownButton(
+                      items: const [
+                        DropdownMenuItem(
+                          child: Text("System"),
+                          value: "system",
+                        ),
+                        DropdownMenuItem(
+                          child: Text("Light"),
+                          value: "light",
+                        ),
+                        DropdownMenuItem(
+                          child: Text("Dark"),
+                          value: "dark",
+                        ),
+                      ],
+                      onChanged: (brightness) {
+                        value.put("brightness", brightness);
+                      },
+                      value: value.get("brightness", defaultValue: "system"),
+                      underline: Container(),
+                    ),
                   ),
                   valueListenable: Hive.box('settings').listenable(),
                 ),

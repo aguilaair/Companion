@@ -44,8 +44,8 @@ class ProjectVersionSelect extends HookWidget {
         tooltip: 'Select a Flutter SDK Version',
         child: Container(
           height: 35,
-          decoration: const BoxDecoration(
-            color: Colors.white10,
+          decoration: BoxDecoration(
+            color: Theme.of(context).dividerColor.withOpacity(0.02),
           ),
           padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
           // color: Colors.black38,

@@ -3,6 +3,7 @@ import 'package:Companion/components/atoms/typography.dart';
 import 'package:Companion/components/molecules/project_version_select.dart';
 
 import 'package:Companion/providers/installed_versions.provider.dart';
+import 'package:Companion/utils/open_link.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -32,9 +33,27 @@ class ProjectItem extends HookWidget {
         child: FvmListTile(
           leading: const Icon(MdiIcons.alphaPBox),
           title: TypographySubheading(project.name),
-          trailing: ProjectVersionSelect(
-            project: project,
-            versions: installedVersions,
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              OutlinedButton.icon(
+                onPressed: () {
+                  openLink(
+                      "vscode://file/${project.projectDir.absolute.toString()}");
+                },
+                icon: const Icon(MdiIcons.microsoftVisualStudioCode),
+                label: const Text(
+                  "Open",
+                ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              ProjectVersionSelect(
+                project: project,
+                versions: installedVersions,
+              ),
+            ],
           ),
         ),
       ),

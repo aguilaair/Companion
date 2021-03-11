@@ -151,11 +151,53 @@ This will disable Google's crash reporting and analytics, when installing a new 
                         hintText: value.get("gh_token"),
                         counterText: "",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(5),
                         ),
                       ),
                     ),
                   ),
+                ),
+              ),
+              SettingsTile(
+                title: "Open projects with",
+                subtitle: "Select what program to open pages as."
+                    " Currently only VS Code is available.",
+                leading: const Icon(Icons.code_rounded),
+                trailing: ValueListenableBuilder(
+                  builder: (context, value, child) => Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).dividerColor.withOpacity(0.02),
+                    ),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    constraints:
+                        const BoxConstraints(minWidth: 110, maxWidth: 165),
+                    child: DropdownButton(
+                      items: [
+                        const DropdownMenuItem(
+                          child: Text("None"),
+                          value: false,
+                        ),
+                        DropdownMenuItem(
+                          child: Row(
+                            children: [
+                              const Icon(MdiIcons.microsoftVisualStudioCode),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text("VSCode"),
+                            ],
+                          ),
+                          value: true,
+                        ),
+                      ],
+                      onChanged: (brightness) {
+                        value.put("open_vscode", brightness);
+                      },
+                      value: value.get("open_vscode", defaultValue: true),
+                      underline: Container(),
+                    ),
+                  ),
+                  valueListenable: Hive.box('settings').listenable(),
                 ),
               ),
               const SettingsTile(

@@ -8,6 +8,7 @@ import 'package:Companion/utils/open_vscode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fvm/fvm.dart';
+import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -36,15 +37,17 @@ class ProjectItem extends HookWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              OutlinedButton.icon(
-                onPressed: () {
-                  openInVSCode(project.projectDir.absolute.path);
-                },
-                icon: const Icon(MdiIcons.microsoftVisualStudioCode),
-                label: const Text(
-                  "Open",
-                ),
-              ),
+              Hive.box("settings").get("open_vscode", defaultValue: true)
+                  ? OutlinedButton.icon(
+                      onPressed: () {
+                        openInVSCode(project.projectDir.absolute.path);
+                      },
+                      icon: const Icon(MdiIcons.microsoftVisualStudioCode),
+                      label: const Text(
+                        "Open",
+                      ),
+                    )
+                  : const SizedBox(),
               const SizedBox(
                 width: 5,
               ),

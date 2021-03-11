@@ -16,3 +16,4 @@ It is still under heavy development and may not be completely stable, if you fin
 
 <img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-1.png" />
 <img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-2.png" />
+<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-3.png" />

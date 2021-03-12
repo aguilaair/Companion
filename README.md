@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-main.svg" width="300" />
+    <img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-main.svg" width="500" />
 </p>
 
 [![Build (Linux, Mac OS, Windows)](https://github.com/aguilaair/Companion/actions/workflows/main.yml/badge.svg)](https://github.com/aguilaair/Companion/actions/workflows/main.yml) 

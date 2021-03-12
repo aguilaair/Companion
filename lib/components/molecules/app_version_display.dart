@@ -1,6 +1,7 @@
 import 'package:Companion/utils/http_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:github/github.dart';
+import 'package:hive/hive.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -71,7 +72,11 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
   }
 
   void updateGithubLatestVersion() {
-    GitHub(auth: Authentication.anonymous(), client: CacheHttpClient())
+    GitHub(
+            auth: Authentication.withToken(
+              Hive.box("settings").get("gh_token"),
+            ),
+            client: CacheHttpClient())
         .repositories
         .getLatestRelease(
           RepositorySlug("aguilaair", "companion"),
@@ -83,7 +88,10 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
         });
       },
     ).catchError((e) {
-      showToast("Error getting latest GitHub release");
+      showToast(
+        "Error getting latest GitHub release",
+        position: ToastPosition.bottom,
+      );
     });
   }
 }

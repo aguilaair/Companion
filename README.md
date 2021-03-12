@@ -1,4 +1,6 @@
-<img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/logo-white.png" width="300" />
+<p align="center">
+    <img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-main.svg" width="300" />
+</p>
 
 [![Build (Linux, Mac OS, Windows)](https://github.com/aguilaair/Companion/actions/workflows/main.yml/badge.svg)](https://github.com/aguilaair/Companion/actions/workflows/main.yml) 
 

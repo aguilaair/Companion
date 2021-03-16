@@ -26,7 +26,8 @@ final projectDependenciesProvider = FutureProvider((ref) async {
   final packages = <String, int>{};
 
   for (var project in projects.list) {
-    final pubspecPath = '${project.projectDir.absolute.path}\\pubspec.yaml';
+    final pubspecPath = '${project.projectDir.absolute.path}'
+        '${Platform.pathSeparator}pubspec.yaml';
     final pubspec = Pubspec.parse(File(pubspecPath).readAsStringSync());
     final deps = pubspec.dependencies;
     final devDeps = pubspec.devDependencies;

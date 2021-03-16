@@ -22,95 +22,98 @@ class PackagesScreen extends HookWidget {
     final packages = useProvider(projectDependenciesProvider);
 
     return packages.when(
-        data: (data) {
-          return FvmScreen(
-            title: 'Your Most Popular Packages',
-            child: Scrollbar(
-              child: ListView.builder(
-                // separatorBuilder: (_, __) => const Divider(),
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  final pkg = data[index];
-                  final position = ++index;
-                  return Container(
-                    height: 150,
-                    child: Column(
-                      children: [
-                        FvmListTile(
-                          leading: CircleAvatar(
-                            //backgroundColor: Colors.black26,
-                            child: Text(position.toString()),
-                          ),
-                          title: Text(pkg.package.name),
-                          subtitle: Text(
-                            pkg.package.description,
-                            maxLines: 2,
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                          trailing: PackageScoreDisplay(score: pkg.score),
+      data: (data) {
+        return FvmScreen(
+          title: 'Your Most Popular Packages',
+          child: Scrollbar(
+            child: ListView.builder(
+              // separatorBuilder: (_, __) => const Divider(),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                final pkg = data[index];
+                final position = ++index;
+                return Container(
+                  height: 150,
+                  child: Column(
+                    children: [
+                      FvmListTile(
+                        leading: CircleAvatar(
+                          //backgroundColor: Colors.black26,
+                          child: Text(position.toString()),
                         ),
-                        const Divider(thickness: 0.5),
-                        Row(
-                          children: [
-                            GithubInfoDisplay(
-                              key: Key(pkg.package.name),
-                              repoSlug: getRepoSlugFromPubspec(
-                                  pkg.package.latestPubspec),
+                        title: Text(pkg.package.name),
+                        subtitle: Text(
+                          pkg.package.description,
+                          maxLines: 2,
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                        trailing: PackageScoreDisplay(score: pkg.score),
+                      ),
+                      const Divider(thickness: 0.5),
+                      Row(
+                        children: [
+                          GithubInfoDisplay(
+                            key: Key(pkg.package.name),
+                            repoSlug: getRepoSlugFromPubspec(
+                                pkg.package.latestPubspec),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TypographyCaption(pkg.package.version),
+                                    const SizedBox(width: 10),
+                                    const Text('·'),
+                                    const SizedBox(width: 10),
+                                    TextButton(
+                                      child: const Text('details'),
+                                      onPressed: () async {
+                                        await openLink(pkg.package.url);
+                                      },
+                                    ),
+                                    const SizedBox(width: 10),
+                                    const Text('·'),
+                                    const SizedBox(width: 10),
+                                    TextButton(
+                                      child: const Text('changelog'),
+                                      onPressed: () async {
+                                        await openLink(
+                                            pkg.package.changelogUrl);
+                                      },
+                                    ),
+                                    const SizedBox(width: 10),
+                                    const Text('·'),
+                                    const SizedBox(width: 10),
+                                    TextButton(
+                                      child: const Text('website'),
+                                      onPressed: () async {
+                                        await openLink(
+                                            pkg.package.latestPubspec.homepage);
+                                      },
+                                    ),
+                                    const SizedBox(width: 10),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      TypographyCaption(pkg.package.version),
-                                      const SizedBox(width: 10),
-                                      const Text('·'),
-                                      const SizedBox(width: 10),
-                                      TextButton(
-                                        child: const Text('details'),
-                                        onPressed: () async {
-                                          await openLink(pkg.package.url);
-                                        },
-                                      ),
-                                      const SizedBox(width: 10),
-                                      const Text('·'),
-                                      const SizedBox(width: 10),
-                                      TextButton(
-                                        child: const Text('changelog'),
-                                        onPressed: () async {
-                                          await openLink(
-                                              pkg.package.changelogUrl);
-                                        },
-                                      ),
-                                      const SizedBox(width: 10),
-                                      const Text('·'),
-                                      const SizedBox(width: 10),
-                                      TextButton(
-                                        child: const Text('website'),
-                                        onPressed: () async {
-                                          await openLink(pkg
-                                              .package.latestPubspec.homepage);
-                                        },
-                                      ),
-                                      const SizedBox(width: 10),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        const Divider()
-                      ],
-                    ),
-                  );
-                },
-              ),
+                          )
+                        ],
+                      ),
+                      const Divider()
+                    ],
+                  ),
+                );
+              },
             ),
-          );
-        },
-        loading: () => const LoadingIndicator(),
-        error: (_, __) => Container());
+          ),
+        );
+      },
+      loading: () => const LoadingIndicator(),
+      error: (_, __) => Container(
+        child: const Text("There was an issue loading Packages"),
+      ),
+    );
   }
 }

@@ -14,8 +14,8 @@ import 'package:oktoast/oktoast.dart';
 import 'package:window_size/window_size.dart';
 
 void main() async {
-  await initHive().onError((error, stackTrace) => exit(0));
   WidgetsFlutterBinding.ensureInitialized();
+  await initHive().onError((error, stackTrace) => exit(0));
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowTitle('Companion');
     setWindowMinSize(const Size(700, 500));

@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 Future<void> initHive() async {
-  final docPath = await getApplicationDocumentsDirectory();
+  final docPath = await getApplicationSupportDirectory();
   try {
     Hive.init("${docPath.path}/flutter_companion");
     await Hive.openBox("settings");

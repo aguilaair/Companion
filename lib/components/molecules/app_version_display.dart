@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:github/github.dart';
 import 'package:hive/hive.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class AppVersionInfo extends StatefulWidget {
   const AppVersionInfo({Key key}) : super(key: key);
@@ -14,7 +13,6 @@ class AppVersionInfo extends StatefulWidget {
 }
 
 class _AppVersionInfoState extends State<AppVersionInfo> {
-  PackageInfo packageInfo;
   String latestversion;
   String installedVersion;
 

@@ -179,12 +179,12 @@ This will disable Google's crash reporting and analytics, when installing a new 
                         ),
                         DropdownMenuItem(
                           child: Row(
-                            children: [
-                              const Icon(MdiIcons.microsoftVisualStudioCode),
-                              const SizedBox(
+                            children: const [
+                              Icon(MdiIcons.microsoftVisualStudioCode),
+                              SizedBox(
                                 width: 10,
                               ),
-                              const Text("VSCode"),
+                              Text("VSCode"),
                             ],
                           ),
                           value: true,

@@ -1,3 +1,4 @@
+import 'package:Companion/constants.dart';
 import 'package:Companion/utils/http_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:github/github.dart';
@@ -20,16 +21,6 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
   @override
   Widget build(BuildContext context) {
     if (latestversion == null) updateGithubLatestVersion();
-    if (packageInfo == null) {
-      PackageInfo.fromPlatform().then((pInfo) {
-        setState(() {
-          installedVersion = pInfo.version;
-        });
-      }).catchError((e) {
-        showToast("Error getting installed version",
-            position: ToastPosition.bottom);
-      });
-    }
     return Container(
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -51,8 +42,8 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "${packageInfo == null ? "Unknown" : packageInfo.version}",
+                  const Text(
+                    "$appVersion",
                   ),
                   Text("${latestversion ?? "Unknown"}")
                 ],

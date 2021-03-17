@@ -1,4 +1,5 @@
 import 'package:Companion/constants.dart';
+import 'package:Companion/utils/download_release.dart';
 import 'package:Companion/utils/http_cache.dart';
 import 'package:Companion/utils/open_link.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,7 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
 
   void updateGithubLatestVersion() {
     if (isNewerAvailable) {
-      openLink("https://github.com/aguilaair/Companion/releases/latest");
+      downloadRelease(latestversion.toString(), context);
     } else {
       GitHub(
               auth: Authentication.withToken(

@@ -18,7 +18,7 @@ void main() async {
   await initHive().onError((error, stackTrace) => exit(0));
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowTitle('Companion');
-    setWindowMinSize(const Size(700, 500));
+    setWindowMinSize(const Size(800, 500));
     setWindowMaxSize(Size.infinite);
   }
   runApp(ProviderScope(child: FvmApp()));

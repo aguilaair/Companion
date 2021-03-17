@@ -63,7 +63,11 @@ class PackagesScreen extends HookWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    TypographyCaption(pkg.package.version),
+                                    Tooltip(
+                                      message: "Version",
+                                      child: TypographyCaption(
+                                          pkg.package.version),
+                                    ),
                                     const SizedBox(width: 10),
                                     const Text('·'),
                                     const SizedBox(width: 10),

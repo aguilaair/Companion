@@ -1,9 +1,11 @@
 import 'package:Companion/constants.dart';
 import 'package:Companion/utils/http_cache.dart';
+import 'package:Companion/utils/open_link.dart';
 import 'package:flutter/material.dart';
 import 'package:github/github.dart';
 import 'package:hive/hive.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:version/version.dart';
 
 class AppVersionInfo extends StatefulWidget {
   const AppVersionInfo({Key key}) : super(key: key);
@@ -13,12 +15,20 @@ class AppVersionInfo extends StatefulWidget {
 }
 
 class _AppVersionInfoState extends State<AppVersionInfo> {
-  String latestversion;
-  String installedVersion;
+  Version latestversion;
+  Version installedVersion;
+  bool isNewerAvailable = false;
 
   @override
   Widget build(BuildContext context) {
     if (latestversion == null) updateGithubLatestVersion();
+    if (installedVersion == null) {
+      try {
+        installedVersion = Version.parse(appVersion);
+      } on FormatException catch (_) {
+        installedVersion = Version(0, 0, 1);
+      }
+    }
     return Container(
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -40,8 +50,8 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "$appVersion",
+                  Text(
+                    "$installedVersion",
                   ),
                   Text("${latestversion ?? "Unknown"}")
                 ],
@@ -52,8 +62,10 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
             width: 20,
           ),
           OutlinedButton(
-            onPressed: () => updateGithubLatestVersion,
-            child: const Text("Refresh"),
+            onPressed: updateGithubLatestVersion,
+            child: Text(
+              isNewerAvailable ? "Download" : "Refresh",
+            ),
           ),
         ],
       ),
@@ -61,26 +73,41 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
   }
 
   void updateGithubLatestVersion() {
-    GitHub(
-            auth: Authentication.withToken(
-              Hive.box("settings").get("gh_token"),
-            ),
-            client: CacheHttpClient())
-        .repositories
-        .getLatestRelease(
-          RepositorySlug("aguilaair", "companion"),
-        )
-        .then(
-      (value) {
-        setState(() {
-          latestversion = value.tagName;
-        });
-      },
-    ).catchError((e) {
-      showToast(
-        "Error getting latest GitHub release",
-        position: ToastPosition.bottom,
-      );
-    });
+    if (isNewerAvailable) {
+      openLink("https://github.com/aguilaair/Companion/releases/latest");
+    } else {
+      GitHub(
+              auth: Authentication.withToken(
+                Hive.box("settings").get("gh_token"),
+              ),
+              client: CacheHttpClient())
+          .repositories
+          .getLatestRelease(
+            RepositorySlug("aguilaair", "companion"),
+          )
+          .then(
+        (value) {
+          setState(() {
+            latestversion = Version.parse(value.tagName);
+            isNewerAvailable = (latestversion > installedVersion);
+            if (isNewerAvailable) {
+              showToast(
+                "New Companion version available!"
+                " Download it now through the App version section.",
+                backgroundColor: Colors.green,
+                position: ToastPosition.bottom,
+                duration: const Duration(seconds: 10),
+                textPadding: const EdgeInsets.all(20),
+              );
+            }
+          });
+        },
+      ).catchError((e) {
+        showToast(
+          "Error getting latest GitHub release",
+          position: ToastPosition.bottom,
+        );
+      });
+    }
   }
 }

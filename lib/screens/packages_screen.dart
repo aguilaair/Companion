@@ -13,6 +13,7 @@ import 'package:Companion/utils/github_parse.dart';
 
 import 'package:Companion/utils/open_link.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class PackagesScreen extends HookWidget {
   const PackagesScreen({Key key}) : super(key: key);
@@ -33,7 +34,6 @@ class PackagesScreen extends HookWidget {
                 final pkg = data[index];
                 final position = ++index;
                 return Container(
-                  height: 160,
                   child: Column(
                     children: [
                       FvmListTile(
@@ -67,31 +67,55 @@ class PackagesScreen extends HookWidget {
                                     const SizedBox(width: 10),
                                     const Text('·'),
                                     const SizedBox(width: 10),
-                                    TextButton(
-                                      child: const Text('details'),
-                                      onPressed: () async {
-                                        await openLink(pkg.package.url);
-                                      },
+                                    Tooltip(
+                                      message: "Details",
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.info_outline_rounded,
+                                        ),
+                                        iconSize: 20,
+                                        splashRadius: 20,
+                                        color: Theme.of(context).accentColor,
+                                        onPressed: () async {
+                                          await openLink(pkg.package.url);
+                                        },
+                                      ),
                                     ),
                                     const SizedBox(width: 10),
                                     const Text('·'),
                                     const SizedBox(width: 10),
-                                    TextButton(
-                                      child: const Text('changelog'),
-                                      onPressed: () async {
-                                        await openLink(
-                                            pkg.package.changelogUrl);
-                                      },
+                                    Tooltip(
+                                      message: "Changelog",
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          MdiIcons.textBox,
+                                        ),
+                                        iconSize: 20,
+                                        splashRadius: 20,
+                                        color: Theme.of(context).accentColor,
+                                        onPressed: () async {
+                                          await openLink(
+                                              pkg.package.changelogUrl);
+                                        },
+                                      ),
                                     ),
                                     const SizedBox(width: 10),
                                     const Text('·'),
                                     const SizedBox(width: 10),
-                                    TextButton(
-                                      child: const Text('website'),
-                                      onPressed: () async {
-                                        await openLink(
-                                            pkg.package.latestPubspec.homepage);
-                                      },
+                                    Tooltip(
+                                      message: "Website",
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          MdiIcons.earth,
+                                        ),
+                                        iconSize: 20,
+                                        splashRadius: 20,
+                                        color: Theme.of(context).accentColor,
+                                        onPressed: () async {
+                                          await openLink(pkg
+                                              .package.latestPubspec.homepage);
+                                        },
+                                      ),
                                     ),
                                     const SizedBox(width: 10),
                                   ],

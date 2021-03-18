@@ -166,6 +166,24 @@ jobs:
             const appVersion = "${{ github.event.release.tag_name }}";
           write-mode: overwrite
           
+      - name: Write MSIX
+        uses: DamianReeves/write-file-action@v1.0
+        with:
+          path: lib/constants.dart
+          contents: |
+            msix_config:
+              display_name: Companion
+              publisher_display_name: Eduardo Moreno
+              identity_name: dev.eduardom.Companion
+              msix_version: ${{ github.event.release.tag_name }}.0
+              logo_path: .\assets\fvm-icon.png
+              start_menu_icon_path: .\assets\icon.png
+              tile_icon_path: .\assets\icon.png
+              icons_background_color: #ffffff
+              architecture: x64
+              capabilities: "internetClient,removableStorage"
+          write-mode: overwrite
+          
       - name: Flutter build app
         run: flutter build windows
         

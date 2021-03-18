@@ -72,16 +72,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icon.png
-
-msix_config:
-  display_name: Companion
-  publisher_display_name: Eduardo Moreno
-  identity_name: dev.eduardom.Companion
-  msix_version: 1.0.0.0
-  #  publisher: CN=Eduardo Moreno, O=Eduardo Moreno, L=Madrid, S=Madrid, C=ES
-  logo_path: .\assets\fvm-icon.png
-  start_menu_icon_path: .\assets\icon.png
-  tile_icon_path: .\assets\icon.png
-  icons_background_color: #ffffff
-  architecture: x64
-  capabilities: "internetClient,removableStorage"

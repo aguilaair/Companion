@@ -182,7 +182,7 @@ jobs:
               icons_background_color: #ffffff
               architecture: x64
               capabilities: "internetClient,removableStorage"
-          write-mode: overwrite
+          write-mode: append
           
       - name: Flutter build app
         run: flutter build windows

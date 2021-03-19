@@ -46,6 +46,7 @@ class PackagesScreen extends HookWidget {
                         subtitle: Text(
                           pkg.package.description,
                           maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.caption,
                         ),
                         trailing: PackageScoreDisplay(score: pkg.score),

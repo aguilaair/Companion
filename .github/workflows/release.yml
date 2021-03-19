@@ -171,6 +171,15 @@ jobs:
         
       - name: Flutter get packages (again)
         run: flutter pub get
+        
+      - name: Read pubspec.yaml
+        id: pubspec
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./pubspec.yaml
+
+      - name: Echo pubspec.yaml
+        run: echo ${{ steps.pubspec.outputs.content }}
 
       - name: Write constants
         uses: DamianReeves/write-file-action@v1.0

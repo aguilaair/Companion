@@ -9,11 +9,11 @@ import 'package:path_provider/path_provider.dart' as provider;
 
 void downloadRelease(String release, BuildContext ctx) async {
   var directory = await provider.getDownloadsDirectory();
-  var zipLocation =
+  var fileLocation =
       "${directory.absolute.path}${Platform.pathSeparator}CRel-$release.";
   var url =
       "https://github.com/aguilaair/Companion/releases/download/$release/${Platform.operatingSystem.toLowerCase()}-$release.zip";
-  var file = File("${zipLocation}zip");
+  var file = File("${fileLocation}zip");
 
   if (!await file.exists()) {
     showToast("Downloading...", context: ctx);
@@ -26,9 +26,12 @@ void downloadRelease(String release, BuildContext ctx) async {
   }
 
   if (Platform.isWindows) {
-    installWindows(file, zipLocation);
+    installWindows(file, fileLocation);
+  }
+  if (Platform.isMacOS) {
+    installMacOS(file, fileLocation);
   } else {
-    openLink("file://${zipLocation.replaceAll("\\", "/")}zip");
+    openLink("file://${fileLocation.replaceAll("\\", "/")}zip");
   }
 }
 
@@ -38,4 +41,12 @@ void installWindows(File file, String path) async {
       decompressed.files.firstWhere((element) => element.name.contains("msix"));
   await File("${path}msix").writeAsBytes(msix.content);
   openLink("file://${path.replaceAll("\\", "/")}msix");
+}
+
+void installMacOS(File file, String path) async {
+  var decompressed = ZipDecoder().decodeBytes(file.readAsBytesSync());
+  var dmg =
+      decompressed.files.firstWhere((element) => element.name.contains("dmg"));
+  await File("${path}dmg").writeAsBytes(dmg.content);
+  openLink("file://${path.replaceAll("\\", "/")}dmg");
 }

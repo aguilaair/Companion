@@ -128,11 +128,9 @@ jobs:
           "Companion.app"
 
       - name: Compress artifacts
-        run: zip -r macos-${{ github.event.release.tag_name }}.zip build/macos/Build/Products/Release/Companion.app
+        run: zip -r macos-${{ github.event.release.tag_name }}.zip build/macos/Build/Products/Release
 
       - name: Upload files to a GitHub release
-        # You may pin to the exact commit or the version.
-        # uses: svenstaro/upload-release-action@483c1e56f95e88835747b1c7c60581215016cbf2
         uses: svenstaro/upload-release-action@2.2.1
         with:
           # GitHub token.

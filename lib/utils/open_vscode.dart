@@ -22,13 +22,9 @@ void _openVSCodeViaUrl(String path) {
 
 void _openVSCodeWindows(String path) {
   var pathInfo = Platform.environment["PATH"];
-  var vsCode = pathInfo
-      .split(";")
-      .where(
+  var vsCode = pathInfo.split(";").firstWhere(
         (element) => element.contains("VS Code"),
-      )
-      .toList()
-      .first;
+      );
   Process.run("$vsCode\\code.cmd", [path]).then(
     (value) {
       if (value.exitCode != 0) {

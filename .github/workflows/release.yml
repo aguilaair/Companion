@@ -154,7 +154,7 @@ jobs:
       - name: Write MSIX
         uses: DamianReeves/write-file-action@v1.0
         with:
-          path: lib/constants.dart
+          path: pubspec.yaml
           contents: |
             msix_config:
               display_name: Companion
@@ -191,7 +191,7 @@ jobs:
         run: flutter pub run msix:create
 
       - name: Compress artifacts
-        run: tar.exe -a -c -f windows-${{ github.event.release.tag_name }}.zip .
+        run: tar.exe -a -c -f windows-${{ github.event.release.tag_name }}.zip build/windows/Runner/release
 
       - name: Upload files to a GitHub release
         # You may pin to the exact commit or the version.

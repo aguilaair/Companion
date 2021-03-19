@@ -60,6 +60,7 @@ dependencies:
 
   version: ^1.2.0
   http: ^0.12.2
+  archive: ^2.0.13
 
 dev_dependencies:
   build_runner: ^1.10.6

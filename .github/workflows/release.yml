@@ -161,10 +161,10 @@ jobs:
               publisher_display_name: Eduardo Moreno
               identity_name: dev.eduardom.Companion
               msix_version: ${{ github.event.release.tag_name }}.0
-              logo_path: .\assets\fvm-icon.png
+              logo_path: .\macos\Runner\Assets.xcassets\AppIcon.appiconset\app_icon_128.png
               start_menu_icon_path: .\assets\icon.png
               tile_icon_path: .\assets\icon.png
-              icons_background_color: #ffffff
+              icons_background_color: transparent
               architecture: x64
               capabilities: "internetClient,removableStorage"
           write-mode: append

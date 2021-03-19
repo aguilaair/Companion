@@ -191,7 +191,7 @@ jobs:
         run: flutter pub run msix:create
 
       - name: Compress artifacts
-        run: tar.exe -a -c -f windows-${{ github.event.release.tag_name }}.zip
+        run: tar.exe -a -c -f windows-${{ github.event.release.tag_name }}.zip .
 
       - name: Upload files to a GitHub release
         # You may pin to the exact commit or the version.

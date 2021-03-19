@@ -1,7 +1,6 @@
 import 'package:Companion/constants.dart';
 import 'package:Companion/utils/download_release.dart';
 import 'package:Companion/utils/http_cache.dart';
-import 'package:Companion/utils/open_link.dart';
 import 'package:flutter/material.dart';
 import 'package:github/github.dart';
 import 'package:hive/hive.dart';

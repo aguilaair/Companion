@@ -34,6 +34,7 @@ class PackagesScreen extends HookWidget {
                 final pkg = data[index];
                 final position = ++index;
                 return Container(
+                  height: 155,
                   child: Column(
                     children: [
                       FvmListTile(

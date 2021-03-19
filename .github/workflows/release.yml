@@ -65,6 +65,7 @@ jobs:
           file: linux-${{ github.event.release.tag_name }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
+          
   build-macos:
     name: "Build MacOS"
     runs-on: macos-latest
@@ -79,6 +80,9 @@ jobs:
 
       - name: Set Up XCode
         uses: devbotsxyz/xcode-select@v1.1.0
+        
+      - name: Install create-dmg
+        run: brew install create-dmg
 
       - name: Enable desktop
         run: flutter config --enable-macos-desktop
@@ -106,6 +110,22 @@ jobs:
 
       - name: Flutter build app
         run: flutter build macos
+        
+      - name: Create DMG
+        working-directory: build/macos/Build/Products/Release
+        run: |
+          create-dmg \
+          --volname "Companion" \
+          --window-pos 200 120 \
+          --window-size 800 529 \
+          --icon-size 130 \
+          --text-size 14 \
+          --icon "Companion.app" 260 250 \
+          --hide-extension "Companion.app" \
+          --app-drop-link 540 250 \
+          --hdiutil-quiet \
+          "Companion.dmg" \
+          "Companion.app"
 
       - name: Compress artifacts
         run: zip -r macos-${{ github.event.release.tag_name }}.zip build/macos/Build/Products/Release/Companion.app
@@ -121,6 +141,7 @@ jobs:
           file: macos-${{ github.event.release.tag_name }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
+          
   build-windows:
     name: "Build Windows"
     runs-on: windows-latest

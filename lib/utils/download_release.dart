@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:Companion/utils/open_link.dart';
-import 'package:archive/archive.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:oktoast/oktoast.dart';

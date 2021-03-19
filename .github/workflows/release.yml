@@ -151,21 +151,6 @@ jobs:
       - name: Set new Flutter version
         run: cider version ${{ github.event.release.tag_name }}
         
-      - name: Flutter get packages (again)
-        run: flutter pub get
-
-      - name: Write constants
-        uses: DamianReeves/write-file-action@v1.0
-        with:
-          path: lib/constants.dart
-          contents: |
-            const kNavigationWidth = 65.0;
-            const kNavigationWidthExtended = 180.0;
-            const kAvailableChannels = ['beta', 'dev', 'stable'];
-            const kMasterChannel = 'master';
-            const appVersion = "${{ github.event.release.tag_name }}";
-          write-mode: overwrite
-          
       - name: Write MSIX
         uses: DamianReeves/write-file-action@v1.0
         with:
@@ -183,6 +168,21 @@ jobs:
               architecture: x64
               capabilities: "internetClient,removableStorage"
           write-mode: append
+        
+      - name: Flutter get packages (again)
+        run: flutter pub get
+
+      - name: Write constants
+        uses: DamianReeves/write-file-action@v1.0
+        with:
+          path: lib/constants.dart
+          contents: |
+            const kNavigationWidth = 65.0;
+            const kNavigationWidthExtended = 180.0;
+            const kAvailableChannels = ['beta', 'dev', 'stable'];
+            const kMasterChannel = 'master';
+            const appVersion = "${{ github.event.release.tag_name }}";
+          write-mode: overwrite
           
       - name: Flutter build app
         run: flutter build windows

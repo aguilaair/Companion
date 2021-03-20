@@ -17,18 +17,19 @@ void downloadRelease(String release, BuildContext ctx) async {
 
   if (!await file.exists()) {
     showToast("Downloading...", context: ctx);
-    http.get(url).then((response) {
-      file.writeAsBytes(response.bodyBytes);
-      showToast("Release downloaded!", context: ctx);
-    });
+    var res = await http.get(url);
+    await file.writeAsBytes(res.bodyBytes);
+    showToast("Release downloaded! Opening...", context: ctx);
   } else {
-    showToast("File already downloaded, opening", context: ctx);
+    showToast("File already downloaded, opening...", context: ctx);
   }
+  openInstaller(file, fileLocation);
+}
 
+void openInstaller(File file, String fileLocation) {
   if (Platform.isWindows) {
     installWindows(file, fileLocation);
-  }
-  if (Platform.isMacOS) {
+  } else if (Platform.isMacOS) {
     installMacOS(file, fileLocation);
   } else {
     openLink("file://${fileLocation.replaceAll("\\", "/")}zip");

@@ -6,6 +6,7 @@ import 'package:github/github.dart';
 import 'package:hive/hive.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:version/version.dart';
+import 'update_card.dart';
 
 class AppVersionInfo extends StatefulWidget {
   const AppVersionInfo({Key key}) : super(key: key);
@@ -91,13 +92,13 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
             latestversion = Version.parse(value.tagName);
             isNewerAvailable = (latestversion > installedVersion);
             if (isNewerAvailable) {
-              showToast(
-                "New Companion version available!"
-                " Download it now through the App version section.",
-                backgroundColor: Colors.green,
+              showToastWidget(
+                UpdateAvailableCard(updateGithubLatestVersion),
+                //backgroundColor: Colors.green,
+                handleTouch: true,
                 position: ToastPosition.bottom,
                 duration: const Duration(seconds: 10),
-                textPadding: const EdgeInsets.all(20),
+                //textPadding: const EdgeInsets.all(20),
               );
             }
           });

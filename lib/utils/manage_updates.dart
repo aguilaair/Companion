@@ -23,10 +23,10 @@ void downloadRelease(String release) async {
   var file = File("${fileLocation}zip");
 
   if (!await file.exists()) {
-    showToast("Downloading...");
+    showToast("Downloading...", duration: const Duration(seconds: 30));
     var res = await http.get(url);
     await file.writeAsBytes(res.bodyBytes);
-    showToast("Release downloaded! Opening...");
+    showToast("Release downloaded! Opening...", dismissOtherToast: true);
   } else {
     showToast("File already downloaded, opening...");
   }
@@ -59,7 +59,7 @@ void installMacOS(File file, String path) async {
   openLink("file://${path.replaceAll("\\", "/")}dmg");
 }
 
-void checkForUpdates(BuildContext ctx) async {
+void checkForUpdates() async {
   var installedVersion;
   try {
     installedVersion = Version.parse(appVersion);

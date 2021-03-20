@@ -29,7 +29,7 @@ class FvmApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    checkForUpdates(context);
+    checkForUpdates();
     return OKToast(
       child: ValueListenableBuilder(
         valueListenable: Hive.box('settings').listenable(),

@@ -15,7 +15,7 @@ class UpdateAvailableCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(

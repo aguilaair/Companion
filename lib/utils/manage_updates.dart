@@ -3,9 +3,16 @@ import 'dart:io';
 import 'package:Companion/utils/open_link.dart';
 import 'package:archive/archive.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:github/github.dart';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:oktoast/oktoast.dart';
 import 'package:path_provider/path_provider.dart' as provider;
+import 'package:version/version.dart';
+
+import '../constants.dart';
+import 'http_cache.dart';
+import '../components/molecules/update_card.dart';
 
 void downloadRelease(String release, BuildContext ctx) async {
   var directory = await provider.getDownloadsDirectory();
@@ -50,4 +57,44 @@ void installMacOS(File file, String path) async {
       decompressed.files.firstWhere((element) => element.name.contains("dmg"));
   await File("${path}dmg").writeAsBytes(dmg.content);
   openLink("file://${path.replaceAll("\\", "/")}dmg");
+}
+
+void checkForUpdates() async {
+  var installedVersion;
+  try {
+    installedVersion = Version.parse(appVersion);
+  } on FormatException catch (_) {
+    installedVersion = Version(0, 0, 1);
+  }
+
+  var latestRelease = await GitHub(
+          auth: Authentication.withToken(
+            Hive.box("settings").get("gh_token"),
+          ),
+          client: CacheHttpClient())
+      .repositories
+      .getLatestRelease(
+        RepositorySlug("aguilaair", "companion"),
+      );
+
+  var latestVersion = Version.parse(latestRelease.tagName);
+
+  if (latestVersion > installedVersion) {
+    ToastFuture toast;
+
+    void dismisstoast() {
+      toast.dismiss(showAnim: true);
+    }
+
+    toast = showToastWidget(
+      UpdateAvailableCard(checkForUpdates, dismisstoast),
+      //backgroundColor: Colors.green,
+      handleTouch: true,
+      position: const ToastPosition(
+        align: Alignment(0.95, 0.95),
+      ),
+      duration: const Duration(seconds: 60),
+      //textPadding: const EdgeInsets.all(20),
+    );
+  }
 }

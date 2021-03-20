@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:Companion/app_shell.dart';
 
 import 'package:Companion/theme.dart';
+import 'package:Companion/utils/manage_updates.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +29,7 @@ class FvmApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    checkForUpdates();
     return OKToast(
       child: ValueListenableBuilder(
         valueListenable: Hive.box('settings').listenable(),

@@ -74,6 +74,14 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
   }
 
   void updateGithubLatestVersion() {
+    if (installedVersion == null) {
+      try {
+        installedVersion = Version.parse(appVersion);
+      } on FormatException catch (_) {
+        installedVersion = Version(0, 0, 1);
+      }
+    }
+
     if (isNewerAvailable) {
       downloadRelease(latestversion.toString(), context);
     } else {
@@ -91,24 +99,6 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
           setState(() {
             latestversion = Version.parse(value.tagName);
             isNewerAvailable = (latestversion > installedVersion);
-            if (isNewerAvailable) {
-              ToastFuture toast;
-
-              void dismisstoast() {
-                toast.dismiss(showAnim: true);
-              }
-
-              toast = showToastWidget(
-                UpdateAvailableCard(updateGithubLatestVersion, dismisstoast),
-                //backgroundColor: Colors.green,
-                handleTouch: true,
-                position: ToastPosition(
-                  align: Alignment(0.95, 0.95),
-                ),
-                duration: const Duration(seconds: 60),
-                //textPadding: const EdgeInsets.all(20),
-              );
-            }
           });
         },
       ).catchError((e) {

@@ -78,14 +78,6 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
   }
 
   void updateGithubLatestVersion() {
-    if (installedVersion == null) {
-      try {
-        installedVersion = Version.parse(appVersion);
-      } on FormatException catch (_) {
-        installedVersion = Version(0, 0, 1);
-      }
-    }
-
     if (isNewerAvailable) {
       downloadRelease(latestversion.toString());
     } else {

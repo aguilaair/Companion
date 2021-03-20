@@ -64,7 +64,7 @@ void checkForUpdates() async {
   try {
     installedVersion = Version.parse(appVersion);
   } on FormatException catch (_) {
-    installedVersion = Version(0, 0, 1);
+    return;
   }
 
   var latestRelease = await GitHub(

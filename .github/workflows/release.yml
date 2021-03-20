@@ -47,11 +47,28 @@ jobs:
 
       - name: Flutter build app
         run: flutter build linux
-
+        
+      - name: Build .deb
+        uses: jiro4989/build-deb-action@v2
+        with:
+          package: companion
+          package_root: ./build/linux/release/bundle
+          maintainer: Eduardo M.
+          version: ${{ github.event.release.tag_name }}
+          desc: Flutter Development made delightful.
+          
+      - name: Build .rpm
+        uses: jiro4989/build-rpm-action@v2
+        with:
+          package: companion
+          package_root: ./build/linux/release/bundle
+          maintainer: Eduardo M.
+          version: ${{ github.event.release.tag_name }}
+          desc: Flutter Development made delightful.
+          
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          path: ./build/linux/release/bundle
           filename: linux-${{ github.event.release.tag_name }}.zip
 
       - name: Upload files to a GitHub release

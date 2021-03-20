@@ -92,12 +92,20 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
             latestversion = Version.parse(value.tagName);
             isNewerAvailable = (latestversion > installedVersion);
             if (isNewerAvailable) {
-              showToastWidget(
-                UpdateAvailableCard(updateGithubLatestVersion),
+              ToastFuture toast;
+
+              void dismisstoast() {
+                toast.dismiss(showAnim: true);
+              }
+
+              toast = showToastWidget(
+                UpdateAvailableCard(updateGithubLatestVersion, dismisstoast),
                 //backgroundColor: Colors.green,
                 handleTouch: true,
-                position: ToastPosition.bottom,
-                duration: const Duration(seconds: 10),
+                position: ToastPosition(
+                  align: Alignment(0.95, 0.95),
+                ),
+                duration: const Duration(seconds: 60),
                 //textPadding: const EdgeInsets.all(20),
               );
             }

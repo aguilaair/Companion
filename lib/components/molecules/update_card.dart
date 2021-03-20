@@ -32,9 +32,15 @@ class UpdateAvailableCard extends StatelessWidget {
             const SizedBox(
               width: 15,
             ),
-            OutlinedButton(
+            OutlinedButton.icon(
               onPressed: installl,
-              child: const Text("Install Now"),
+              icon: const Icon(
+                Icons.file_download,
+                size: 18,
+              ),
+              label: const Text(
+                "Install Now",
+              ),
             ),
             const SizedBox(
               width: 15,

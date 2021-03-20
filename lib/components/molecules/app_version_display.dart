@@ -62,10 +62,14 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
           const SizedBox(
             width: 20,
           ),
-          OutlinedButton(
+          OutlinedButton.icon(
             onPressed: updateGithubLatestVersion,
-            child: Text(
-              isNewerAvailable ? "Download" : "Refresh",
+            icon: const Icon(
+              Icons.file_download,
+              size: 18,
+            ),
+            label: Text(
+              isNewerAvailable ? "Install Now" : "Refresh",
             ),
           ),
         ],

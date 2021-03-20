@@ -10,11 +10,11 @@ import 'package:oktoast/oktoast.dart';
 import 'package:path_provider/path_provider.dart' as provider;
 import 'package:version/version.dart';
 
+import '../components/molecules/update_card.dart';
 import '../constants.dart';
 import 'http_cache.dart';
-import '../components/molecules/update_card.dart';
 
-void downloadRelease(String release, BuildContext ctx) async {
+void downloadRelease(String release) async {
   var directory = await provider.getDownloadsDirectory();
   var fileLocation =
       "${directory.absolute.path}${Platform.pathSeparator}CRel-$release.";
@@ -23,12 +23,12 @@ void downloadRelease(String release, BuildContext ctx) async {
   var file = File("${fileLocation}zip");
 
   if (!await file.exists()) {
-    showToast("Downloading...", context: ctx);
+    showToast("Downloading...");
     var res = await http.get(url);
     await file.writeAsBytes(res.bodyBytes);
-    showToast("Release downloaded! Opening...", context: ctx);
+    showToast("Release downloaded! Opening...");
   } else {
-    showToast("File already downloaded, opening...", context: ctx);
+    showToast("File already downloaded, opening...");
   }
   openInstaller(file, fileLocation);
 }
@@ -59,7 +59,7 @@ void installMacOS(File file, String path) async {
   openLink("file://${path.replaceAll("\\", "/")}dmg");
 }
 
-void checkForUpdates() async {
+void checkForUpdates(BuildContext ctx) async {
   var installedVersion;
   try {
     installedVersion = Version.parse(appVersion);
@@ -87,7 +87,12 @@ void checkForUpdates() async {
     }
 
     toast = showToastWidget(
-      UpdateAvailableCard(checkForUpdates, dismisstoast),
+      UpdateAvailableCard(() {
+        downloadRelease(latestRelease.tagName);
+        Future.delayed(Duration(seconds: 1)).then((_) {
+          dismisstoast();
+        });
+      }, dismisstoast),
       //backgroundColor: Colors.green,
       handleTouch: true,
       position: const ToastPosition(

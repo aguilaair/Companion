@@ -83,7 +83,7 @@ class _AppVersionInfoState extends State<AppVersionInfo> {
     }
 
     if (isNewerAvailable) {
-      downloadRelease(latestversion.toString(), context);
+      downloadRelease(latestversion.toString());
     } else {
       GitHub(
               auth: Authentication.withToken(

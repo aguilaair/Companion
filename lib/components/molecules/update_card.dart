@@ -3,12 +3,12 @@ import 'package:oktoast/oktoast.dart';
 
 class UpdateAvailableCard extends StatelessWidget {
   const UpdateAvailableCard(
-    this.updateGithubLatestVersion,
+    this.installl,
     this.toastDismiss, {
     Key key,
   }) : super(key: key);
 
-  final Function updateGithubLatestVersion;
+  final Function installl;
   final Function toastDismiss;
 
   @override
@@ -33,7 +33,7 @@ class UpdateAvailableCard extends StatelessWidget {
               width: 15,
             ),
             OutlinedButton(
-              onPressed: toastDismiss,
+              onPressed: installl,
               child: const Text("Install Now"),
             ),
             const SizedBox(

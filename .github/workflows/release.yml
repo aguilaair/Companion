@@ -112,7 +112,6 @@ jobs:
         run: flutter build macos
         
       - name: Create DMG
-        working-directory: build/macos/Build/Products/Release
         run: |
           create-dmg \
           --volname "Companion" \
@@ -124,8 +123,9 @@ jobs:
           --hide-extension "Companion.app" \
           --app-drop-link 540 250 \
           --hdiutil-quiet \
-          "Companion.dmg" \
-          "Companion.app"
+          --background "assets/DMG.png" \
+          "build/macos/Build/Products/Release/Companion.dmg" \
+          "build/macos/Build/Products/Release/Companion.app"
 
       - name: Compress artifacts
         run: zip -r macos-${{ github.event.release.tag_name }}.zip build/macos/Build/Products/Release

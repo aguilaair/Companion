@@ -89,7 +89,7 @@ void checkForUpdates(BuildContext ctx) async {
     toast = showToastWidget(
       UpdateAvailableCard(() {
         downloadRelease(latestRelease.tagName);
-        Future.delayed(Duration(seconds: 1)).then((_) {
+        Future.delayed(const Duration(seconds: 1)).then((_) {
           dismisstoast();
         });
       }, dismisstoast),

@@ -4,7 +4,7 @@ version: 0.0.1
 summary: Making Flutter Development Delighful.
 description: A simple app to make Flutter development more delightful.
 
-confinement: classic
+confinement: strict
 base: core18
 grade: stable
 
@@ -20,6 +20,11 @@ apps:
     extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
     plugs:
       - network
+      - home
+      - personal-files
+      - removable-media
+      - system-files
+      - fuse-support
     slots:
       - dbus-companion
 parts:

@@ -48,24 +48,15 @@ jobs:
       - name: Flutter build app
         run: flutter build linux
         
-      - name: Build .deb
-        uses: jiro4989/build-deb-action@v2
-        with:
-          package: companion
-          package_root: ./build/linux/release/bundle
-          maintainer: Eduardo M.
-          version: ${{ github.event.release.tag_name }}
-          desc: Flutter Development made delightful.
-          
-      - name: Build .rpm
-        uses: jiro4989/build-rpm-action@v2
-        with:
-          package: companion
-          package_root: ./build/linux/release/bundle
-          maintainer: Eduardo M.
-          version: ${{ github.event.release.tag_name }}
-          desc: Flutter Development made delightful.
-          
+      - name: Install Snapcraft
+        run: sudo snap install snapcraft --classic
+        
+      - name: Install Multipass
+        run: sudo snap install multipass --classic
+        
+      - name: Build snap
+        run: snapcraft
+
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1
         with:

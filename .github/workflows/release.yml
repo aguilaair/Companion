@@ -48,14 +48,8 @@ jobs:
       - name: Flutter build app
         run: flutter build linux
         
-      - name: Install Snapcraft
-        run: sudo snap install snapcraft --classic
-        
-      - name: Install Multipass
-        run: sudo snap install multipass --classic
-        
-      - name: Build snap
-        run: snapcraft
+      - name: Set Up Snapcraft & Build Snap
+        uses: snapcore/action-build@v1
 
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1
@@ -63,8 +57,6 @@ jobs:
           filename: linux-${{ github.event.release.tag_name }}.zip
 
       - name: Upload files to a GitHub release
-        # You may pin to the exact commit or the version.
-        # uses: svenstaro/upload-release-action@483c1e56f95e88835747b1c7c60581215016cbf2
         uses: svenstaro/upload-release-action@2.2.1
         with:
           # GitHub token.

@@ -48,8 +48,8 @@ jobs:
       - name: Flutter build app
         run: flutter build linux
         
-      - name: Set Up Snapcraft & Build Snap
-        uses: snapcore/action-build@v1
+      #- name: Set Up Snapcraft & Build Snap
+      #  uses: snapcore/action-build@v1
 
       - name: Compress artifacts
         uses: TheDoctor0/zip-release@0.4.1

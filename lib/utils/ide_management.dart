@@ -1,8 +1,56 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'open_link.dart';
+
+class Ide {
+  String name;
+  String identifier;
+  IconData icon;
+  Function open;
+
+  Ide({
+    this.icon,
+    this.identifier,
+    this.name,
+    this.open,
+  });
+
+  void launch(String path) {
+    open(path);
+  }
+}
+
+Map<String, Ide> ideMap = {
+  "vsCode": Ide(
+    icon: MdiIcons.microsoftVisualStudioCode,
+    identifier: "vsCode",
+    name: "Visual Studio Code",
+    open: openInVSCode,
+  ),
+  "studio": Ide(
+    icon: MdiIcons.androidStudio,
+    identifier: "studio",
+    name: "Android Studio",
+    open: (_) {},
+  ),
+  "intellij": Ide(
+    icon: Icons.code_rounded,
+    identifier: "intellij",
+    name: "IntelliJ Idea",
+    open: (_) {},
+  ),
+  "none": Ide(
+    icon: Icons.browser_not_supported_rounded,
+    identifier: "none",
+    name: "None",
+    open: (_) {},
+  ),
+};
 
 void openInVSCode(String path) {
   if (Platform.isWindows) {
@@ -10,7 +58,7 @@ void openInVSCode(String path) {
   } else if (Platform.isMacOS) {
     _openVSCodeMacOS(path);
   } else {
-    multiplatformFallback(path);
+    vsCodemultiplatformFallback(path);
   }
 }
 
@@ -66,7 +114,7 @@ void _openVSCodeMacOS(String path) async {
   }
 }
 
-void multiplatformFallback(String path) {
+void vsCodemultiplatformFallback(String path) {
   Process.run("code", [path], runInShell: true).then(
     (value) {
       if (value.exitCode != 0) {

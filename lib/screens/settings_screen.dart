@@ -2,6 +2,7 @@ import 'package:Companion/components/atoms/screen.dart';
 import 'package:Companion/components/molecules/app_version_display.dart';
 import 'package:Companion/providers/projects_provider.dart';
 import 'package:Companion/providers/settings.provider.dart';
+import 'package:Companion/utils/ide_management.dart';
 import 'package:Companion/utils/notify.dart';
 import 'package:file_chooser/file_chooser.dart';
 import 'package:flutter/material.dart';
@@ -170,30 +171,28 @@ This will disable Google's crash reporting and analytics, when installing a new 
                     ),
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     constraints:
-                        const BoxConstraints(minWidth: 110, maxWidth: 165),
+                        const BoxConstraints(minWidth: 220, maxWidth: 250),
                     child: DropdownButton(
                       items: [
-                        const DropdownMenuItem(
-                          child: Text("None"),
-                          value: false,
-                        ),
-                        DropdownMenuItem(
-                          child: Row(
-                            children: const [
-                              Icon(MdiIcons.microsoftVisualStudioCode),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text("VSCode"),
-                            ],
-                          ),
-                          value: true,
-                        ),
+                        ...ideMap.values.map((element) {
+                          return DropdownMenuItem(
+                            child: Row(
+                              children: [
+                                Icon(element.icon),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(element.name),
+                              ],
+                            ),
+                            value: element.identifier,
+                          );
+                        }).toList()
                       ],
-                      onChanged: (brightness) {
-                        value.put("open_vscode", brightness);
+                      onChanged: (val) {
+                        value.put("open_ide", val);
                       },
-                      value: value.get("open_vscode", defaultValue: true),
+                      value: value.get("open_ide", defaultValue: "vsCode"),
                       underline: Container(),
                     ),
                   ),

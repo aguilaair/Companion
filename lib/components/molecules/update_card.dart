@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
 
 class UpdateAvailableCard extends StatelessWidget {
   const UpdateAvailableCard(

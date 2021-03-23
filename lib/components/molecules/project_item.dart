@@ -3,7 +3,7 @@ import 'package:Companion/components/atoms/typography.dart';
 import 'package:Companion/components/molecules/project_version_select.dart';
 
 import 'package:Companion/providers/installed_versions.provider.dart';
-import 'package:Companion/utils/open_vscode.dart';
+import 'package:Companion/utils/ide_management.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -19,6 +19,8 @@ class ProjectItem extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final installedVersions = useProvider(installedVersionsProvider);
+    final ideId = Hive.box("settings").get("open_ide", defaultValue: "vsCode");
+    final ide = ideMap[ideId];
 
     return Container(
       height: 80,
@@ -37,17 +39,16 @@ class ProjectItem extends HookWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Hive.box("settings").get("open_vscode", defaultValue: true)
+              ide.identifier != "none"
                   ? OutlinedButton.icon(
                       onPressed: () {
-                        openInVSCode(project.projectDir.absolute.path);
+                        ide.launch(project.projectDir.absolute.path);
                       },
-                      icon: const Icon(MdiIcons.microsoftVisualStudioCode),
+                      icon: Icon(ide.icon),
                       label: const Text(
                         "Open",
-                      ),
-                    )
-                  : const SizedBox(),
+                      ))
+                  : Container(),
               const SizedBox(
                 width: 5,
               ),

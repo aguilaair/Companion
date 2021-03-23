@@ -6,7 +6,6 @@ import 'package:github/github.dart';
 import 'package:hive/hive.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:version/version.dart';
-import 'update_card.dart';
 
 class AppVersionInfo extends StatefulWidget {
   const AppVersionInfo({Key key}) : super(key: key);

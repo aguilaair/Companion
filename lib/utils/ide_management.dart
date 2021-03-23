@@ -36,7 +36,7 @@ Map<String, Ide> ideMap = {
     icon: MdiIcons.androidStudio,
     identifier: "studio",
     name: "Android Studio",
-    open: (_) {},
+    open: openInAndroidStudio,
   ),
   "intellij": Ide(
     icon: Icons.code_rounded,
@@ -51,6 +51,55 @@ Map<String, Ide> ideMap = {
     open: (_) {},
   ),
 };
+
+// Android Studio Opening Logic
+
+void openInAndroidStudio(String path) {
+  if (Platform.isWindows) {
+    _openASWindows(path);
+  } else if (Platform.isLinux) {
+    _openASLinux(path);
+  }
+}
+
+void _openASWindows(String path) {
+  var androidStudioExe =
+      File("C:\\Program Files\\Android\\Android Studio\\bin\\studio64.exe");
+  if (androidStudioExe.existsSync()) {
+    _processRunAS(androidStudioExe.absolute.path, path);
+  } else {
+    showToast("Could not locate an Android Studio installation");
+  }
+}
+
+void _openASLinux(String path) {
+  var androidStudioSh = File("/opt/android-studio/bin/studio.sh");
+  var androidStudioShLocal = File("/usr/local/android-studio/bin/studio.sh");
+  var androidStudioShBin = File("/usr/bin/android-studio/bin/studio.sh");
+  if (androidStudioSh.existsSync()) {
+    _processRunAS(androidStudioSh.absolute.path, path);
+  } else if (androidStudioShLocal.existsSync()) {
+    _processRunAS(androidStudioShLocal.absolute.path, path);
+  } else if (androidStudioShBin.existsSync()) {
+    _processRunAS(androidStudioShBin.absolute.path, path);
+  } else {
+    showToast("Could not locate an Android Studio installation");
+  }
+}
+
+void _processRunAS(String asPath, String path) {
+  Process.run(asPath, [path]).then(
+    (value) {
+      if (value.exitCode != 0) {
+        showToast("An error ocurred when opening Android Studio");
+      }
+    },
+  ).onError((error, stackTrace) {
+    showToast("An error ocurred when opening Android Studio");
+  });
+}
+
+// VSCode opening Logic
 
 void openInVSCode(String path) {
   if (Platform.isWindows) {

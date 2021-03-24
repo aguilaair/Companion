@@ -59,7 +59,16 @@ void openInAndroidStudio(String path) {
     _openASWindows(path);
   } else if (Platform.isLinux) {
     _openASLinux(path);
+  } else if (Platform.isMacOS) {
+    _openASMacOS(path);
   }
+}
+
+void _openASMacOS(String path) {
+  var androidStudio =
+      File("/Applications/Visual Studio Code.app/Contents/Resources/app/bin/");
+
+  if (androidStudio.existsSync()) {}
 }
 
 void _openASWindows(String path) {

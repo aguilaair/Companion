@@ -42,7 +42,7 @@ Map<String, Ide> ideMap = {
     icon: Icons.code_rounded,
     identifier: "intellij",
     name: "IntelliJ Idea",
-    open: (_) {},
+    open: openInIntelliJ,
   ),
   "none": Ide(
     icon: Icons.browser_not_supported_rounded,
@@ -51,6 +51,69 @@ Map<String, Ide> ideMap = {
     open: (_) {},
   ),
 };
+
+// IntelliJ Opening Logic
+
+void openInIntelliJ(String path) {
+  if (Platform.isWindows) {
+    _openIJWindows(path);
+  } else if (Platform.isLinux) {
+    _openIJLinux(path);
+  } else if (Platform.isMacOS) {
+    _openIJMacOS(path);
+  }
+}
+
+void _openIJMacOS(String path) {
+  var androidStudio =
+      File("/Applications/Intellij IDEA.app/Contents/MacOS/idea");
+
+  if (androidStudio.existsSync()) {
+    _processRunIJ(androidStudio.absolute.path, path);
+  } else {
+    showToast("Could not locate an InetlliJ IDEA installation");
+  }
+}
+
+void _openIJWindows(String path) {
+  var intelliJDir = Directory("C:\\Program Files\\JetBrains");
+
+  try {
+    var dir = File(
+        "${intelliJDir.listSync().firstWhere((element) => element.absolute.path.contains("IntelliJ IDEA")).absolute.path}\\bin\\idea64.exe");
+    _processRunIJ(dir.absolute.path, path);
+    // ignore: avoid_catching_errors
+  } on StateError {
+    showToast("Could not locate an InetlliJ IDEA installation");
+  }
+}
+
+void _openIJLinux(String path) {
+  var androidStudioSh = File("/opt/IdeaIU/bin/idea.sh");
+  var androidStudioShLocal = File("/usr/local/IdeaIU/bin/idea.sh");
+  var androidStudioShBin = File("/usr/bin/IdeaIU/bin/idea.sh");
+  if (androidStudioSh.existsSync()) {
+    _processRunIJ(androidStudioSh.absolute.path, path);
+  } else if (androidStudioShLocal.existsSync()) {
+    _processRunIJ(androidStudioShLocal.absolute.path, path);
+  } else if (androidStudioShBin.existsSync()) {
+    _processRunIJ(androidStudioShBin.absolute.path, path);
+  } else {
+    showToast("Could not locate an InetlliJ IDEA installation");
+  }
+}
+
+void _processRunIJ(String asPath, String path) {
+  Process.run(asPath, [path]).then(
+    (value) {
+      if (value.exitCode != 0) {
+        showToast("An error ocurred when opening InetlliJ IDEA");
+      }
+    },
+  ).onError((error, stackTrace) {
+    showToast("An error ocurred when opening InetlliJ IDEA");
+  });
+}
 
 // Android Studio Opening Logic
 

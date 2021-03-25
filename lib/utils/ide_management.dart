@@ -66,9 +66,13 @@ void openInAndroidStudio(String path) {
 
 void _openASMacOS(String path) {
   var androidStudio =
-      File("/Applications/Visual Studio Code.app/Contents/Resources/app/bin/");
+      File("/Applications/Android Studio.app/Contents/MacOS/studio");
 
-  if (androidStudio.existsSync()) {}
+  if (androidStudio.existsSync()) {
+    _processRunAS(androidStudio.absolute.path, path);
+  } else {
+    showToast("Could not locate an Android Studio installation");
+  }
 }
 
 void _openASWindows(String path) {

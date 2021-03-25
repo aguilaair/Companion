@@ -65,11 +65,14 @@ void openInIntelliJ(String path) {
 }
 
 void _openIJMacOS(String path) {
-  var androidStudio =
-      File("/Applications/Intellij IDEA.app/Contents/MacOS/idea");
+  var intelliJ = File("/Applications/Intellij IDEA.app/Contents/MacOS/idea");
+  var intelliJToolbox = File("/Library/Application Support/JetBrains/"
+      "Toolbox/apps/Intellij IDEA.app/Contents/MacOS/idea");
 
-  if (androidStudio.existsSync()) {
-    _processRunIJ(androidStudio.absolute.path, path);
+  if (intelliJ.existsSync()) {
+    _processRunIJ(intelliJ.absolute.path, path);
+  } else if (intelliJToolbox.existsSync()) {
+    _processRunIJ(intelliJToolbox.absolute.path, path);
   } else {
     showToast("Could not locate an InetlliJ IDEA installation");
   }
@@ -77,6 +80,7 @@ void _openIJMacOS(String path) {
 
 void _openIJWindows(String path) {
   var intelliJDir = Directory("C:\\Program Files\\JetBrains");
+  print(intelliJDir.listSync());
 
   try {
     var dir = File(

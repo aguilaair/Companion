@@ -1,4 +1,4 @@
-import 'package:Companion/constants.dart';
+import 'package:Companion/version.dart';
 import 'package:Companion/utils/manage_updates.dart';
 import 'package:Companion/utils/http_cache.dart';
 import 'package:flutter/material.dart';

@@ -26,19 +26,15 @@ jobs:
 
       - name: Install Cider
         run: flutter pub global activate cider
-        
+
       - name: Set new Flutter version
         run: cider version ${{ github.event.release.tag_name }}
-        
+
       - name: Write constants
         uses: DamianReeves/write-file-action@v1.0
         with:
-          path: lib/constants.dart
+          path: lib/version.dart
           contents: |
-            const kNavigationWidth = 65.0;
-            const kNavigationWidthExtended = 180.0;
-            const kAvailableChannels = ['beta', 'dev', 'stable'];
-            const kMasterChannel = 'master';
             const appVersion = "${{ github.event.release.tag_name }}";
           write-mode: overwrite
 
@@ -47,7 +43,7 @@ jobs:
 
       - name: Flutter build app
         run: flutter build linux
-        
+
       #- name: Set Up Snapcraft & Build Snap
       #  uses: snapcore/action-build@v1
 
@@ -65,7 +61,7 @@ jobs:
           file: linux-${{ github.event.release.tag_name }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
-          
+
   build-macos:
     name: "Build MacOS"
     runs-on: macos-latest
@@ -80,7 +76,7 @@ jobs:
 
       - name: Set Up XCode
         uses: devbotsxyz/xcode-select@v1.1.0
-        
+
       - name: Install create-dmg
         run: brew install create-dmg
 
@@ -89,28 +85,24 @@ jobs:
 
       - name: Install Cider
         run: flutter pub global activate cider
-        
+
       - name: Set new Flutter version
         run: cider version ${{ github.event.release.tag_name }}
-        
+
       - name: Write constants
         uses: DamianReeves/write-file-action@v1.0
         with:
-          path: lib/constants.dart
+          path: lib/version.dart
           contents: |
-            const kNavigationWidth = 65.0;
-            const kNavigationWidthExtended = 180.0;
-            const kAvailableChannels = ['beta', 'dev', 'stable'];
-            const kMasterChannel = 'master';
             const appVersion = "${{ github.event.release.tag_name }}";
           write-mode: overwrite
-        
+
       - name: Flutter get packages
         run: flutter pub get
 
       - name: Flutter build app
         run: flutter build macos
-        
+
       - name: Create DMG
         run: |
           create-dmg \
@@ -139,7 +131,7 @@ jobs:
           file: macos-${{ github.event.release.tag_name }}.zip
           # Tag to use as a release.
           tag: ${{ github.ref }}
-          
+
   build-windows:
     name: "Build Windows"
     runs-on: windows-latest
@@ -154,13 +146,13 @@ jobs:
 
       - name: Enable desktop
         run: flutter config --enable-windows-desktop
-        
+
       - name: Install Cider
         run: flutter pub global activate cider
-        
+
       - name: Set new Flutter version
         run: cider version ${{ github.event.release.tag_name }}
-        
+
       - name: Write MSIX
         uses: DamianReeves/write-file-action@v1.0
         with:
@@ -178,25 +170,21 @@ jobs:
               architecture: x64
               capabilities: "internetClient,removableStorage"
           write-mode: append
-        
+
       - name: Write constants
         uses: DamianReeves/write-file-action@v1.0
         with:
-          path: lib/constants.dart
+          path: lib/version.dart
           contents: |
-            const kNavigationWidth = 65.0;
-            const kNavigationWidthExtended = 180.0;
-            const kAvailableChannels = ['beta', 'dev', 'stable'];
-            const kMasterChannel = 'master';
             const appVersion = "${{ github.event.release.tag_name }}";
           write-mode: overwrite
-        
+
       - name: Flutter get packages
         run: flutter pub get
-    
+
       - name: Flutter build app
         run: flutter build windows
-        
+
       - name: Create MSIX
         run: flutter pub run msix:create
 

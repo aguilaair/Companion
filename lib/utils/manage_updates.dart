@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart' as provider;
 import 'package:version/version.dart';
 
 import '../components/molecules/update_card.dart';
-import '../constants.dart';
+import '../version.dart';
 import 'http_cache.dart';
 
 void downloadRelease(String release) async {

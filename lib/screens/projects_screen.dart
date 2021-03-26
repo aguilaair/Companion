@@ -6,6 +6,7 @@ import 'package:Companion/utils/notify.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -46,7 +47,7 @@ class ProjectsScreen extends HookWidget {
     }
 
     return FvmScreen(
-      title: 'Flutter Projects',
+      title: 'Apps',
       actions: [
         TextButton.icon(
           label: const TypographyCaption('Refresh'),
@@ -81,7 +82,9 @@ class ProjectsScreen extends HookWidget {
         )
       ],
       child: Scrollbar(
-        child: ListView.builder(
+        child: StaggeredGridView.builder(
+          gridDelegate: SliverStaggeredGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 500),
           controller: controller,
           itemCount: filteredProjects.value.length,
           itemBuilder: (context, index) {

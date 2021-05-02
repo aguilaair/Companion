@@ -1,3 +1,5 @@
+# This project has now been merged into ![Sidekick by Leo Farias](https://github.com/leoafarias/sidekick/). Please use Sidekick, which has all of the features of Companion and many, many more!
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/aguilaair/Companion/main/assets/banner-main.svg" width="500" />
 </p>
